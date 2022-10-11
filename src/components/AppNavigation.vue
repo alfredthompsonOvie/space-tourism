@@ -21,8 +21,14 @@
 				<!-- nav lists -->
 				<li class="mobileNav__item">
 					<RouterLink to="/" class="mobileNav__link">
-						<span class="mobileNav__link--number">01</span>
+						<span class="mobileNav__link--number">00</span>
 						<span class="mobileNav__link--text">Home</span>
+					</RouterLink>
+				</li>
+				<li class="mobileNav__item">
+					<RouterLink :to="{ name: 'Destination' }" class="mobileNav__link">
+						<span class="mobileNav__link--number">01</span>
+						<span class="mobileNav__link--text">Destination</span>
 					</RouterLink>
 				</li>
 				<li class="mobileNav__item">
@@ -32,14 +38,8 @@
 					</RouterLink>
 				</li>
 				<li class="mobileNav__item">
-					<RouterLink :to="{ name: 'Destination' }" class="mobileNav__link">
-						<span class="mobileNav__link--number">03</span>
-						<span class="mobileNav__link--text">Destination</span>
-					</RouterLink>
-				</li>
-				<li class="mobileNav__item">
 					<RouterLink :to="{ name: 'Technology' }" class="mobileNav__link">
-						<span class="mobileNav__link--number">04</span>
+						<span class="mobileNav__link--number">03</span>
 						<span class="mobileNav__link--text">Technology</span>
 					</RouterLink>
 				</li>
@@ -53,8 +53,14 @@
 			<ul class="mainNav">
 				<li>
 					<RouterLink to="/">
-						<span class="mobileNav__link--number">01</span>
+						<span class="mobileNav__link--number">00</span>
 						<span class="mobileNav__link--text">Home</span>
+					</RouterLink>
+				</li>
+				<li>
+					<RouterLink :to="{ name: 'Destination' }">
+						<span class="mobileNav__link--number">01</span>
+						<span class="mobileNav__link--text">Destination</span>
 					</RouterLink>
 				</li>
 				<li>
@@ -64,14 +70,8 @@
 					</RouterLink>
 				</li>
 				<li>
-					<RouterLink :to="{ name: 'Destination' }">
-						<span class="mobileNav__link--number">03</span>
-						<span class="mobileNav__link--text">Destination</span>
-					</RouterLink>
-				</li>
-				<li>
 					<RouterLink :to="{ name: 'Technology' }">
-						<span class="mobileNav__link--number">04</span>
+						<span class="mobileNav__link--number">03</span>
 						<span class="mobileNav__link--text">Technology</span>
 					</RouterLink>
 				</li>
@@ -171,10 +171,12 @@ export default {
 .mobileNav__link--number {
 	font-weight: var(--fw-number);
 	color: var(--color-title);
-	letter-spacing: 2.7px;
 }
 .mobileNav__link--text {
 	font-weight: var(--fw);
+}
+.nav a {
+	letter-spacing: 2.7px;
 }
 
 /* ------------------------------ */
@@ -287,7 +289,7 @@ nav a.router-link-exact-active:hover {
 	}
 	.nav {
 		display: grid;
-		grid-template-columns: 150px  4fr 0.2fr 5.2fr 120px;
+		grid-template-columns: 100px  4fr 0.2fr 5.2fr 80px;
 		grid-row: auto;
 		align-items: center;
 		
@@ -327,7 +329,7 @@ nav a.router-link-exact-active:hover {
 
 		display: grid;
 		grid-template-rows: auto;
-		grid-template-columns: 0.2fr 1fr  120px;
+		grid-template-columns: 0.2fr 1fr  80px;
 		justify-content: end;
 		overflow: hidden;
 		position: relative;
@@ -346,21 +348,10 @@ nav a.router-link-exact-active:hover {
 		/* justify-content: end; */
 		/* background-color: red; */
 		/* background-color: green; */
-		gap: 1em;
+		gap: 1.5em;
 
-
-	}
-	.mainNav {
 		display: flex;
-		/* justify-content: center; */
-		/* align-items: center; */
-		/* gap: 2.8em; */
-		/* gap: 1em; */
-		/* padding: 0 3em; */
-		/* height: 100%; */
-		/* 
-		background-color: var(--nav-background);
-		backdrop-filter: var(--nav-backdrop-filter); */
+
 	}
 	.mainNav li {
 		height: 100%;
@@ -372,6 +363,8 @@ nav a.router-link-exact-active:hover {
 		align-items: center;
 		height: 100%;
 		border-bottom: 3px solid transparent;
+		font-size: 14px;
+		letter-spacing: 1px;
 	}
 	.mobileNav__link--number{
 		display: inline-block;
@@ -387,6 +380,12 @@ nav a.router-link-exact-active:hover {
 	
 }
 @media (min-width: 1100px) {
+	.nav {
+		grid-template-columns: 130px  4fr 0.2fr 5.2fr 100px;
+	}
+	.overlay {
+		grid-template-columns: 0.2fr 1fr  100px;
+	}
 	.mainNav {
 		gap: 2em;
 	}
