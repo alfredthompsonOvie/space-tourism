@@ -20,25 +20,25 @@
 
 				<!-- nav lists -->
 				<li class="mobileNav__item">
-					<RouterLink to="/" class="mobileNav__link">
+					<RouterLink to="/" class="mobileNav__link"  @click="toggleMobileNav">
 						<span class="mobileNav__link--number">00</span>
 						<span class="mobileNav__link--text">Home</span>
 					</RouterLink>
 				</li>
 				<li class="mobileNav__item">
-					<RouterLink :to="{ name: 'Destination' }" class="mobileNav__link">
+					<RouterLink :to="{ name: 'Destination' }" class="mobileNav__link"  @click="toggleMobileNav">
 						<span class="mobileNav__link--number">01</span>
 						<span class="mobileNav__link--text">Destination</span>
 					</RouterLink>
 				</li>
 				<li class="mobileNav__item">
-					<RouterLink :to="{ name: 'Crew' }" class="mobileNav__link">
+					<RouterLink :to="{ name: 'Crew' }" class="mobileNav__link"  @click="toggleMobileNav">
 						<span class="mobileNav__link--number">02</span>
 						<span class="mobileNav__link--text">Crew</span>
 					</RouterLink>
 				</li>
 				<li class="mobileNav__item">
-					<RouterLink :to="{ name: 'Technology' }" class="mobileNav__link">
+					<RouterLink :to="{ name: 'Technology' }" class="mobileNav__link"  @click="toggleMobileNav">
 						<span class="mobileNav__link--number">03</span>
 						<span class="mobileNav__link--text">Technology</span>
 					</RouterLink>
@@ -216,7 +216,7 @@ nav a.router-link-exact-active:hover {
 		--fs-nav: 14px;
 	}
 	.nav {
-		padding: 0em;
+		padding: 0;
 		display: grid;
 		grid-template-columns: 120px 1fr;
 		grid-template-rows: 5em;
@@ -293,7 +293,7 @@ nav a.router-link-exact-active:hover {
 		grid-row: auto;
 		align-items: center;
 		
-		position: absolute;
+		position: fixed;
 		left: 0;
 		top: 1.5em;
 		height: 100%;

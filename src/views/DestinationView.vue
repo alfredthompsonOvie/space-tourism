@@ -1,42 +1,47 @@
 <template>
 	<div class="section section__destination">
-		<h3 class="subheading subheading__others is-subheading">
+		<h3 class="subheading subheading__others">
 			<span class="subheading__number">01</span>
 			Pick your destination
 		</h3>
-		<!--  -->
-		<div class="section-img-container section-img__destination">
-			<div v-for="destination in destinations" :key="destination.name">
-				<template v-if="showDestination === destination.name">
-					<img
-						:src="`${imageUrl}${destination.images.png}.png`"
-						alt=""
-						class="section-img planet section-img__destination__0 section-img__0 showcase content__active"
-					/>
-				</template>
-			</div>
+		<!-- images -->
+		<div
+			class="section-img-container"
+			v-for="destination in destinations"
+			:key="destination.name"
+		>
+			<template v-if="showDestination === destination.name">
+				<img
+					:src="`${imageUrl}${destination.images.png}.png`"
+					alt=""
+					class="section-img planet section-img__destination section-img__0 showcase content__active"
+				/>
+			</template>
 		</div>
-		<!--  -->
-
 		<!-- !NEXT SECTION -->
 		<div class="section-contents section-contents__destination">
-			<div class="contents-btn-control btnDestination">
-				<button 
-				class="btn dest__active btn__planet btn__tab"
-				v-for="destination in destinations" :key="destination.name"
-				@click="showDestination = destination.name"
+			<!-- buttons -->
+			<div class="btnDestination">
+				<button
+					class="btn btn__planet"
+					:class="showDestination === destination.name ? 'btn__active' : ''"
+					v-for="destination in destinations"
+					:key="destination.name"
+					@click="showDestination = destination.name"
 				>
 					{{ destination.name }}
 				</button>
 			</div>
 			<!-- contents -->
-			<div class="contents contents__destination" >
-				<div v-for="destination in destinations" :key="destination.name" v-auto-animate>
+			<div class="contents contents__destination">
+				<div v-for="destination in destinations" :key="destination.name">
 					<template v-if="showDestination === destination.name">
-						<div 
+						<div
 							class="content content__0 content__active content__profile showcase"
 						>
-							<h3 class="heading heading__destination">{{ destination.name }}</h3>
+							<h3 class="heading heading__destination">
+								{{ destination.name }}
+							</h3>
 							<p class="content-description content-description__destination">
 								{{ destination.description }}
 							</p>
@@ -47,80 +52,24 @@
 									>
 										avg. distance
 									</h4>
-									<h1 class="content-duration__distance heading heading__duration">
+									<h1
+										class="content-duration__distance heading heading__duration"
+									>
 										{{ destination.distance }}
 									</h1>
 								</div>
 								<div class="content-duration__est-travel-time">
-									<h4 class="subheading subheading__duration">est. travel time</h4>
-									<h1 class="heading heading__duration">{{ destination.travel }}</h1>
+									<h4 class="subheading subheading__duration">
+										est. travel time
+									</h4>
+									<h1 class="heading heading__duration">
+										{{ destination.travel }}
+									</h1>
 								</div>
 							</div>
 						</div>
-					
 					</template>
 				</div>
-				
-				<!--  -->
-				<!-- <div class="content content__1 content__profile showcase">
-					<h3 class="heading heading__destination">Mars</h3>
-					<p class="content-description content-description__destination">
-						Don’t forget to pack your hiking boots. You’ll need them to tackle
-						Olympus Mons, the tallest planetary mountain in our solar system.
-						It’s two and a half times the size of Everest!
-					</p>
-					<div class="content-duration">
-						<div class="content-duration__avgDistance">
-							<h4 class="subheading subheading__duration">avg. distance</h4>
-							<h1 class="heading heading__duration">225 mil. km</h1>
-						</div>
-						<div class="content-duration__est-travel-time">
-							<h4 class="subheading subheading__duration">est. travel time</h4>
-							<h1 class="heading heading__duration">9 months</h1>
-						</div>
-					</div>
-				</div> -->
-				
-				<!--  -->
-				<!-- <div class="content content__2 content__profile showcase">
-					<h3 class="heading heading__destination">Europa</h3>
-					<p class="content-description content-description__destination">
-						The smallest of the four Galilean moons orbiting Jupiter, Europa is
-						a winter lover’s dream. With an icy surface, it’s perfect for a bit
-						of ice skating, curling, hockey, or simple relaxation in your snug
-						wintery cabin.
-					</p>
-					<div class="content-duration">
-						<div class="content-duration__avgDistance">
-							<h4 class="subheading subheading__duration">avg. distance</h4>
-							<h1 class="heading heading__duration">628 mil. km</h1>
-						</div>
-						<div class="content-duration__est-travel-time">
-							<h4 class="subheading subheading__duration">est. travel time</h4>
-							<h1 class="heading heading__duration">3 years</h1>
-						</div>
-					</div>
-				</div> -->
-				<!--  -->
-				<!-- <div class="content content__3 content__profile showcase">
-					<h3 class="heading heading__destination">Titan</h3>
-					<p class="content-description content-description__destination">
-						The only moon known to have a dense atmosphere other than Earth,
-						Titan is a home away from home (just a few hundred degrees colder!).
-						As a bonus, you get striking views of the Rings of Saturn.
-					</p>
-					<div class="content-duration">
-						<div class="content-duration__avgDistance">
-							<h4 class="subheading subheading__duration">avg. distance</h4>
-							<h1 class="heading heading__duration">1.6 bil. km</h1>
-						</div>
-						<div class="content-duration__est-travel-time">
-							<h4 class="subheading subheading__duration">est. travel time</h4>
-							<h1 class="heading heading__duration">7 years</h1>
-						</div>
-					</div>
-				</div> -->
-				<!--  -->
 			</div>
 			<!-- end of contents -->
 		</div>
@@ -129,35 +78,119 @@
 </template>
 
 <script>
-import { ref } from 'vue';
-import userData from "../data/data.json"
-
-
+import { ref } from "vue";
+import userData from "../data/data.json";
 
 export default {
 	name: "DestinationView",
 	setup() {
-		const showDestination = ref('Moon') 
-		const { destinations } = userData
-		const imageUrl = new URL("../assets/destination/",  import.meta.url).href
+		const showDestination = ref("Moon");
+		const { destinations } = userData;
+		const imageUrl = new URL("../assets/destination/", import.meta.url).href;
 		console.log(destinations);
 		return {
 			destinations,
 			showDestination,
-			imageUrl
-		}
+			imageUrl,
+		};
 	},
 };
 </script>
 
 <style scoped>
+.section {
+	text-align: center;
+	min-height: 100vh;
+	padding-top: 6em;
+	/* overflow: hidden; */
+}
 .section__destination {
 	background-image: url(@/assets/destination/background-destination-mobile.jpg);
-
 	background-size: cover;
 	background-repeat: no-repeat;
+	/* min-height: 100vh; */
+}
+.section-contents__destination {
+	padding: 0 0.8em;
+}
+.heading {
+	font-family: var(--ff-H);
+	font-weight: var(--fw);
+	text-transform: uppercase;
+	color: var(--color-title);
+}
+.subheading__duration {
+	font-family: var(--ff);
+	text-transform: uppercase;
+	font-weight: normal;
+	font-size: 14px;
+	letter-spacing: 2px;
+	margin-bottom: 0.7em;
+}
+.heading__destination {
+	font-size: clamp(2rem, 15vw, 5rem);
+}
+.heading__duration {
+	text-transform: uppercase;
+	font-family: var(--ff-H);
+	font-weight: normal;
+	font-size: 1.8rem;
+	margin-top: 0.2em;
+	color: #fff;
+}
+.section-img-container {
+	margin: 2em 0;
+	/* border: 1px solid; */
+}
+.section-img__destination {
+	width: 12em;
+	height: 12em;
+	
+}
 
-	min-height: 100vh;
+.btnDestination {
+	display: flex;
+	justify-content: space-around;
+	max-width: 280px;
+	margin: 1.5em auto;
+}
+.btn__planet {
+	border-bottom: 3px solid transparent;
+	padding: 0.6em 0;
+}
+.btn__active {
+	border-bottom: 3px solid #fff;
+}
+.contents__destination {
+	max-width: 315px;
+	/* height: 28em; */
+	padding: 0;
+	/* margin: 0 auto; */
+}
+.content-duration {
+	border-top: 1px solid var(--border-line);
+	margin-top: 2em;
+	padding: 2em 0;
+}
+.content-duration__avgDistance {
+	margin-bottom: 2em;
+}
+@media screen and (min-width: 500px) {
+	.section-img__destination {
+		width: 16em;
+		height: 16em;
+	}
+	.contents__destination {
+		font-size: 17px;
+		max-width: 355px;
+	}
+	/* ! btn */
+	.btn__planet {
+		font-size: 16px;
+	}
+	.btn__planet + .btn__planet {
+		margin-left: 2em;
+	}
 }
 @media screen and (min-width: 700px) {
 	:root {
@@ -165,8 +198,35 @@ export default {
 		--fs-nav: 14px;
 	}
 	.section__destination {
-		background-image: url(@/assets/images/destination/background-destination-tablet.jpg);
+		background-image: url(@/assets/destination/background-destination-tablet.jpg);
 	}
+	.subheading__duration {
+		font-size: 0.75rem;
+	}
+	.heading__duration {
+		font-size: 1.5rem;
+	}
+	.contents__destination {
+		font-size: 17px;
+		max-width: 535px;
+		/* height: 20em; */
+	}
+	.content-description__destination {
+		font-size: 16px;
+		max-width: 520px;
+	}
+	.content-duration {
+		display: flex;
+		justify-content: space-evenly;
+	}
+	.section-img__destination {
+		width: 340px;
+		height: 340px;
+	}
+	.btnDestination {
+	max-width: 350px;
+
+}
 }
 
 @media (min-width: 992px) {
@@ -176,7 +236,61 @@ export default {
 		--fs-nav: 14px;
 	}
 	.section__destination {
-		background-image: url(@/assets/images/destination/background-destination-desktop.jpg);
+		background-image: url(@/assets/destination/background-destination-desktop.jpg);
+		padding-top: 8em;
+		display: grid;
+		grid-template-rows: 40px auto;
+		grid-template-columns: 100px 1.2fr .8fr 80px;
+		align-items: center;
+		text-align: left;
+		/* margin: 0; */
+		/* border: 1px solid; */
 	}
+	.subheading {
+		grid-row: 1;
+		grid-column: 2;
+		margin: 0;
+
+	}
+	.section-img-container {
+		grid-column: 2;
+		grid-row: 2;
+		justify-self: center;
+	}
+	.section-contents__destination {
+		grid-row: 2;
+		grid-column: 3;
+		justify-self: end;
+		width: 353px;
+		padding: 0;
+	}
+	
+
+	.contents-btn-control {
+		margin: 0;
+	}
+	/* destination */
+	.btnDestination,
+	.content-duration {
+		justify-content: flex-start;
+	}
+	.content-duration__est-travel-time {
+		margin-left: 4em;
+	}
+}
+@media (min-width: 1100px) {
+	.section__destination {
+		grid-template-columns: 130px  1.2fr .8fr 100px;
+	}
+}
+@media (min-width: 1200px) {
+	.section__destination {
+		grid-template-columns: 150px  1.2fr .8fr  150px;
+	}
+	.section-img__destination {
+	width: 25em;
+	height: 25em;
+	
+}
 }
 </style>

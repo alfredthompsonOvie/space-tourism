@@ -34,11 +34,24 @@ export default {
 </script>
 
 <style scoped>
+.section {
+	text-align: center;
+	min-height: 100vh;
+	padding-top: 6em;
+	/* overflow: hidden; */
+}
 .section__home {
 	background-image: url(@/assets/images/home/background-home-mobile.jpg);
-	background-position: 0% 65%;
+	/* background-position: 0% 65%; */
 	background-size: cover;
 	background-repeat: no-repeat;
+	/* min-height: 100vh; */
+}
+.heading {
+	font-family: var(--ff-H);
+	font-weight: var(--fw);
+	text-transform: uppercase;
+	color: var(--color-title);
 }
 .heading__home {
 	margin: 0.15em 0;
@@ -179,7 +192,6 @@ export default {
 		/* grid-template-rows: 120px calc(82vh - 120px); */
 		grid-template-rows: auto;
 		grid-template-columns: 100px 1fr 80px;
-		/* grid-template-columns: 100px  4fr 0.2fr 5.2fr 150px; */
 
 		align-items: end;
 
@@ -245,8 +257,8 @@ export default {
 		position: absolute;
 		bottom: 0em;
 		right: 0;
-		left: 0%;
-		transform: translateX(0%);
+		left: 0;
+		transform: translateX(0);
 		font-size: 1.8rem;
 		letter-spacing: 3px;
 	}
@@ -255,7 +267,6 @@ export default {
 	}
 }
 @media (min-width: 1100px) {
-	
 	.section {
 		grid-template-columns: 130px 1fr  100px;
 	}
@@ -267,7 +278,6 @@ export default {
 	}
 }
 @media (min-width: 1200px) {
-	
 	.section {
 		grid-template-columns: 150px 1fr  150px;
 	}
