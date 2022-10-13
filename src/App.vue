@@ -23,5 +23,4 @@ export default {
 .container {
 	position: relative;
 }
-
 </style>

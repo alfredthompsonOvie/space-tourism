@@ -1,13 +1,75 @@
 <template>
-	<div class="technology">
-		<h1>This is an tech page</h1>
+	<div class="section section__technology technology">
+		<h3 class="subheading subheading__others subheading__title is-subheading">
+			<span class="subheading__number">03</span>
+			Space launch 101
+		</h3>
+		<!-- ! IMAGES -->
+		<template v-for="tech in technology" :key="tech.name">
+			<div v-if="showTech === tech.name" class="section-img__tech">
+				<img
+					:src="`${imageUrl}${tech.images.landscape}.jpg`"
+					alt=""
+					class="avatar"
+				/>
+			</div>
+		</template>
+
+		<div class="section-contents section-contents__technology">
+			<div class="contents-btn-control btn__tech">
+				<button
+					v-for="(tech, i) in technology"
+					:key="tech.name"
+					class="btn btn__circle"
+					:class="{ btn__active: tech.name == showTech }"
+					@click="showTech = tech.name"
+				>
+					{{ i + 1 }}
+				</button>
+			</div>
+			<!-- contents -->
+			<div class="contents contents__tech">
+				<div
+					v-for="tech in technology"
+					:key="tech.name"
+					class="content content__0 content__profile content__active showcase"
+				>
+					<template v-if="showTech === tech.name">
+						<h3 class="subheading subheading__tech">
+							The terminology...
+						</h3>
+						<h2 class="heading heading__tech">{{ tech.name }}</h2>
+						<p class="content-description content-description__tech description">
+							{{ tech.description }}
+						</p>
+					</template>
+				</div>
+			</div>
+			<!-- end of contents -->
+		</div>
+		<!-- end of section-contents -->
 	</div>
 </template>
 
 <script>
+import { ref } from "vue";
+import userData from "@/data/data.json";
+
 export default {
 	name: "TechnologyView",
-	setup() {},
+	setup() {
+		const { technology } = userData;
+		const imageUrl = new URL("../assets/technology/", import.meta.url).href;
+		const showTech = ref(technology[0].name);
+
+		console.log(technology);
+
+		return {
+			technology,
+			imageUrl,
+			showTech,
+		};
+	},
 };
 </script>
 
@@ -16,39 +78,90 @@ export default {
 	text-align: center;
 	min-height: 100vh;
 	padding-top: 6em;
-	/* overflow: hidden; */
+	overflow: hidden;
 }
-
 .technology {
-	background-image: url(@/assets/images/technology/background-technology-mobile.jpg);
+	background-image: url(@/assets/technology/background-technology-mobile.jpg);
 	background-size: cover;
 	background-repeat: no-repeat;
-
-	min-height: 100vh;
 }
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/* IMAGES */
+.section-img__tech {
+	margin: 2.5em 0;
+}
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/* BUTTONS */
+.btn__circle {
+	width: 40px;
+	height: 40px;
+	margin: 0em 0.8em;
+	font-size: 1.2rem;
+	border: 1px solid rgba(255, 255, 255, 0.25);
+	border-radius: 50%;
+}
+.btn__active {
+	background-color: #fff;
+	color: #0b0d17;
+}
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/*! CONTENTS */
 .contents__tech {
-	height: 18em;
-	padding: 0;
-	margin: 0;
+	margin: 2em 0 5em;
 }
-.content-description__tech {
-	max-width: 292px;
-	max-width: 328px;
-	margin: 0 auto;
-	padding: 0 0.5em;
-}
-.content__2 .content-description__tech {
-	max-width: 325px;
+.subheading {
+	font-family: var(--ff);
+	text-transform: uppercase;
+	font-weight: normal;
+	font-size: 14px;
+	letter-spacing: 2px;
+	margin-bottom: 0.7em;
 }
 .heading {
 	font-family: var(--ff-H);
 	font-weight: var(--fw);
 	text-transform: uppercase;
 	color: var(--color-title);
-}
-.heading__tech {
+	letter-spacing: 2.3625px;
 	margin-bottom: 0.7em;
+	/* line-height: 17px; */
 }
+.description {
+	max-width: 325px;
+	margin: 0 auto;
+	/* background-color: red; */
+	/* padding: 0 0.5em; */
+}
+
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
 @media screen and (min-width: 500px) {
 	.heading__tech {
 		font-size: 2rem;
@@ -62,12 +175,12 @@ export default {
 	.section-img__crew .section-img {
 		background-size: contain;
 	}
-	.section-img__tech {
+	/* .section-img__tech {
 		height: 16em;
-	}
-	.section-img__tech .section-img {
+	} */
+	/* .section-img__tech .section-img {
 		background-size: cover;
-	}
+	} */
 	/* !contents */
 	.contents__destination {
 		font-size: 17px;
@@ -76,12 +189,12 @@ export default {
 	.content-title__header {
 		font-size: 4.5rem;
 	}
-	.content-description__tech {
+	.description {
 		max-width: 400px;
 	}
-	.content__2 .content-description__tech {
+	/* .content__2 .content-description__tech {
 		max-width: 417px;
-	}
+	} */
 	/* ! btn */
 	.btn__planet {
 		font-size: 16px;
@@ -102,7 +215,7 @@ export default {
 		--fs-nav: 14px;
 	}
 	.technology {
-		background-image: url(@/assets/images/technology/background-technology-tablet.jpg);
+		background-image: url(@/assets/technology/background-technology-tablet.jpg);
 	}
 }
 @media screen and (min-width: 700px) {
@@ -260,17 +373,17 @@ export default {
 		margin: 0 auto;
 	}
 
-	.content-description__tech {
+	.description {
 		max-width: 413px;
 		margin: 0 auto;
 		padding: 0 0.5em;
 	}
-	.content__1 .content-description__tech {
+	/* .content__1 .content-description__tech {
 		max-width: 413px;
 	}
 	.content__2 .content-description__tech {
 		max-width: 417.7px;
-	}
+	} */
 	/* !============================================================ */
 	/* !============================================================ */
 	/* ============================================= */
@@ -289,9 +402,9 @@ export default {
 	.section-img__crew__0 {
 		top: 14px;
 	}
-	.section-img__tech {
+	/* .section-img__tech {
 		height: 22em;
-	}
+	} */
 	/* !============================================================ */
 	/* !============================================================ */
 	/* ============================================= */
