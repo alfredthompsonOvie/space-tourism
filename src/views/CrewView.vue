@@ -8,8 +8,9 @@
 		<!--! iMAGES -->
 		<template v-for="crew in crewMembers" :key="crew.name">
 			<div v-if="showCrew === crew.name" class="section-img__crew">
+				<!-- :src="`${imageUrl}${crew.images.png}.png`" -->
 				<img
-					:src="`${imageUrl}${crew.images.png}.png`"
+				:src="`${getImageUrl(crew.images.png)}.png`"
 					alt=""
 					class="section-img avatar"
 					:class="{ 'avatar--width': crew.name == 'Mark Shuttleworth' }"
@@ -53,14 +54,17 @@ export default {
 	setup() {
 		const { crew: crewMembers } = userData;
 		const imageUrl = new URL("../assets/crew/", import.meta.url).href;
+		function getImageUrl(name) {
+			return new URL(`/src/assets/crew/${name}`, import.meta.url).href;
+		}
 		const showCrew = ref("Douglas Hurley");
 
-		console.log(crewMembers);
 
 		return {
 			crewMembers,
 			showCrew,
 			imageUrl,
+			getImageUrl
 		};
 	},
 };

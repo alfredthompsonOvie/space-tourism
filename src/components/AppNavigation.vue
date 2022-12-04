@@ -294,9 +294,10 @@ nav a.router-link-exact-active:hover {
 		align-items: center;
 		
 		position: fixed;
+		position: absolute;
 		left: 0;
 		top: 1.5em;
-		height: 100%;
+		/* height: 100%; */
 		padding: 0;
 	}
 	.branding {

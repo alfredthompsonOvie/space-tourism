@@ -1,26 +1,55 @@
 <template>
 	<div class="container">
-		<header>
+		<header class="app_header">
 			<app-navigation />
 		</header>
-
-		<RouterView />
+		<transition name="slide-fade" mode="out-in">
+			<RouterView />
+		</transition>
 	</div>
 </template>
 
 <script>
 import AppNavigation from "@/components/AppNavigation.vue";
+import { onUpdated, onMounted } from "vue";
+// import { gsap } from "gsap";
 export default {
 	name: "App",
 	components: {
 		AppNavigation,
 	},
-	setup() {},
+	setup() {
+		onMounted(() => {
+			// gsap.from(".app_header", {
+			// 	autoAlpha: 0.01,
+			// 	y: -10,
+			// 	duration: 1,
+			// 	ease: "power4"
+			// })
+			console.log("mounted");
+		})
+		onUpdated(() => {
+			// gsap.from(".app_header", {
+			// 	autoAlpha: 0.01,
+			// 	y: -10,
+			// 	duration: 1,
+			// 	ease: "power4"
+			// })
+			console.log("updated");
+		})
+	},
 };
 </script>
 
-<style scoped>
+<style>
 .container {
 	position: relative;
 }
+.slide-fade-enter-from, .slide-fade-leave-to {
+	opacity: 0;
+	transform: translateX(-10px);
+}
+.slide-fade-enter-active, .slide-fade-leave-active {
+	transition: all 1s ease-out;
+} 
 </style>

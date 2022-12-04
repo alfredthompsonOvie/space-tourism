@@ -35,11 +35,11 @@
 					class="content content__0 content__profile content__active showcase"
 				>
 					<template v-if="showTech === tech.name">
-						<h3 class="subheading subheading__tech">
-							The terminology...
-						</h3>
+						<h3 class="subheading subheading__tech">The terminology...</h3>
 						<h2 class="heading heading__tech">{{ tech.name }}</h2>
-						<p class="content-description content-description__tech description">
+						<p
+							class="content-description content-description__tech description"
+						>
 							{{ tech.description }}
 						</p>
 					</template>
@@ -60,6 +60,11 @@ export default {
 	setup() {
 		const { technology } = userData;
 		const imageUrl = new URL("../assets/technology/", import.meta.url).href;
+
+		// function getImageUrl(name) {
+		// 	return new URL(`../assets/technology/${name}.png`, import.meta.url).href;
+		// }
+
 		const showTech = ref(technology[0].name);
 
 		console.log(technology);
@@ -68,6 +73,7 @@ export default {
 			technology,
 			imageUrl,
 			showTech,
+
 		};
 	},
 };
