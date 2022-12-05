@@ -43,6 +43,7 @@ body {
 	color: var(--color);
 	scroll-behavior: smooth;
 	position: relative;
+	background-color: var(--border-line);
 }
 *,
 *::before,

@@ -96,6 +96,7 @@ export default {
 	},
 	mounted() {
 		this.mobileNav = false;
+		console.log("nav mounted");
 	},
 	methods: {
 		checkscreenSize() {

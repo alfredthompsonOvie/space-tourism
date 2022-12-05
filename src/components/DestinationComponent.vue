@@ -1,6 +1,6 @@
 <template>
 	<div class="section section__destination">
-		<h3 class="subheading subheading__others">
+		<h3 class="subheading subheading--js">
 			<span class="subheading__number">01</span>
 			Pick your destination
 		</h3>
@@ -82,7 +82,7 @@
 </template>
 
 <script>
-import { ref, onUpdated } from "vue";
+import { ref, onMounted, onUpdated } from "vue";
 import userData from "../data/data.json";
 
 import { gsap } from "gsap";
@@ -95,6 +95,38 @@ export default {
 
 		const imageUrl = new URL("../assets/destination/", import.meta.url).href;
 
+		onMounted(() => {
+			console.log("dest mounted");
+			// gsap.from(".app_header", {
+			// 	opacity: 0,
+			// })
+			const tl = gsap.timeline({
+				defaults: {
+					duration: 1.6,
+					ease: "sine"
+				}
+			});
+			tl.from(".subheading--js", {
+				x: -30,
+				autoAlpha: 0.01,
+			}).from(".section-img__destination", {
+				scale: .95,
+				autoAlpha: 0.01,
+				ease: "back"
+			}, "-=1")
+			.from(".btn__planet", {
+				x: 10,
+				autoAlpha: 0.01,
+				ease: "power4",
+				stagger: 0.2,
+			}, "<")
+			.from(".dest__contents > *", {
+				y: 10,
+				autoAlpha: 0.01,
+				ease: "power4",
+				stagger: 0.2,
+			}, "-=1.5")
+		})
 		onUpdated(() => {
 			gsap.from(".dest__contents > *", {
 				y: 70,

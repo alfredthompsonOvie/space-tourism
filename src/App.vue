@@ -3,9 +3,12 @@
 		<header class="app_header">
 			<app-navigation />
 		</header>
-		<transition name="slide-fade" mode="out-in">
-			<RouterView />
-		</transition>
+
+		<router-view v-slot="{ Component }">
+			<transition name="fade" mode="out-in">
+				<component :is="Component" />
+			</transition>
+		</router-view>
 	</div>
 </template>
 
@@ -26,8 +29,8 @@ export default {
 			// 	duration: 1,
 			// 	ease: "power4"
 			// })
-			console.log("mounted");
-		})
+			console.log("app mounted");
+		});
 		onUpdated(() => {
 			// gsap.from(".app_header", {
 			// 	autoAlpha: 0.01,
@@ -35,8 +38,8 @@ export default {
 			// 	duration: 1,
 			// 	ease: "power4"
 			// })
-			console.log("updated");
-		})
+			console.log("app updated");
+		});
 	},
 };
 </script>
@@ -45,11 +48,14 @@ export default {
 .container {
 	position: relative;
 }
-.slide-fade-enter-from, .slide-fade-leave-to {
+.slide-fade-enter-from,
+.slide-fade-leave-to {
 	opacity: 0;
 	transform: translateX(-10px);
 }
-.slide-fade-enter-active, .slide-fade-leave-active {
+.slide-fade-enter-active,
+.slide-fade-leave-active {
 	transition: all 1s ease-out;
-} 
+}
+
 </style>
