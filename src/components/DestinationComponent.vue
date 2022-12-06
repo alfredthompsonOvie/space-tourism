@@ -48,14 +48,8 @@
 							</p>
 							<div class="content-duration">
 								<div class="content-duration__avgDistance">
-									<h4
-										class="subheading subheading__duration"
-									>
-										avg. distance
-									</h4>
-									<h1
-										class="heading heading__duration"
-									>
+									<h4 class="subheading subheading__duration">avg. distance</h4>
+									<h1 class="heading heading__duration">
 										{{ destination.distance }}
 									</h1>
 								</div>
@@ -82,61 +76,80 @@
 </template>
 
 <script>
-import { ref, onMounted, onUpdated } from "vue";
+import { ref, onUpdated } from "vue";
 import userData from "../data/data.json";
-
 import { gsap } from "gsap";
 
 export default {
-	name: "DestinationView",
+	name: "DestinationComponent",
 	setup() {
 		const { destinations } = userData;
 		const showDestination = ref("Moon");
 
 		const imageUrl = new URL("../assets/destination/", import.meta.url).href;
 
-		onMounted(() => {
-			console.log("dest mounted");
-			// gsap.from(".app_header", {
-			// 	opacity: 0,
-			// })
+		onUpdated(() => {
+			console.log("dest comp updated");
 			const tl = gsap.timeline({
 				defaults: {
-					duration: 1.6,
-					ease: "sine"
-				}
+					duration: 1.4,
+				},
 			});
-			tl.from(".subheading--js", {
-				x: -30,
-				autoAlpha: 0.01,
-			}).from(".section-img__destination", {
-				scale: .95,
-				autoAlpha: 0.01,
-				ease: "back"
-			}, "-=1")
-			.from(".btn__planet", {
-				x: 10,
-				autoAlpha: 0.01,
-				ease: "power4",
-				stagger: 0.2,
-			}, "<")
-			.from(".dest__contents > *", {
-				y: 10,
-				autoAlpha: 0.01,
-				ease: "power4",
-				stagger: 0.2,
-			}, "-=1.5")
-		})
-		onUpdated(() => {
-			gsap.from(".dest__contents > *", {
-				y: 70,
-				autoAlpha: 0.01,
-				stagger: .1,
-				ease: "expo",
-				duration: 1.2,
-			})
-		})
 
+			tl.fromTo(
+				".section-img__destination",
+				{
+					y: 10,
+					scale: 0.95,
+					autoAlpha: 0.01,
+				},
+				{
+					y: 0,
+					scale: 1,
+					autoAlpha: 1,
+					ease: "sine",
+					onRepeat: () => {
+						gsap.fromTo(
+							".section-img__destination",
+							{
+								autoAlpha: 1,
+							},
+							{
+								autoAlpha: 1,
+							}
+						);
+					},
+					onComplete: () => {
+						gsap.fromTo(
+							".section-img__destination",
+							{
+								scale: 1,
+							},
+							{
+								scale: 0.95,
+								yoyo: true,
+								yoyoEase: true,
+								repeat: -1,
+								duration: 2,
+							}
+						)
+					}
+				}
+			).fromTo(
+				".dest__contents > *",
+				{
+					y: 70,
+					autoAlpha: 0.01,
+				},
+				{
+					y: 0,
+					autoAlpha: 1,
+					stagger: 0.1,
+					ease: "power4",
+				},
+				"<"
+			);
+		});
 		return {
 			destinations,
 			showDestination,
@@ -189,12 +202,21 @@ export default {
 }
 .section-img-container {
 	margin: 2em 0;
-	/* border: 1px solid; */
 }
 .section-img__destination {
 	width: 12em;
 	height: 12em;
+	display: inline-block;
+	/* animation: bounce 2s linear  -1 forwards; */
 }
+/* @keyframes bounce {
+	from {
+		transform: scale(.95);
+	}
+	to {
+		transform: scale(1);
+	}
+} */
 
 .btnDestination {
 	display: flex;
@@ -248,6 +270,11 @@ export default {
 	.section__destination {
 		background-image: url(@/assets/destination/background-destination-tablet.jpg);
 	}
+	.subheading {
+		font-size: 19px;
+		margin: 3em 2em;
+		text-align: left;
+	}
 	.subheading__duration {
 		font-size: 0.75rem;
 	}
@@ -273,6 +300,7 @@ export default {
 	}
 	.btnDestination {
 		max-width: 350px;
+		margin: 2em auto;
 	}
 }
 
