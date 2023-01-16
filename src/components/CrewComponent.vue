@@ -1,9 +1,9 @@
 <template>
 	<div class="section__crew">
-		<h3 class="subheading subheading--js">
+		<h1 class="subheading subheading--js">
 			<span class="subheading__number">02</span>
 			Meet your crew
-		</h3>
+		</h1>
 
 		<!--! iMAGES -->
 		<template v-for="crew in crewMembers" :key="crew.name">
@@ -33,8 +33,8 @@
 			<template v-for="crew in crewMembers" :key="crew.name">
 				<div class="contents contents__crew" v-if="showCrew === crew.name">
 					<div class="content__profile">
-						<h3 class="subheading subheading__rank">{{ crew.role }}</h3>
-						<h2 class="heading heading__crew">{{ crew.name }}</h2>
+						<h2 class="subheading subheading__rank">{{ crew.role }}</h2>
+						<h3 class="heading">{{ crew.name }}</h3>
 						<p class="content-description content-description__crew">
 							{{ crew.bio }}
 						</p>
@@ -68,8 +68,8 @@ export default {
 				},
 			});
 			tl.from(".avatar", {
-        autoAlpha: 0.01,
-        duration: 2
+				autoAlpha: 0.01,
+				duration: 2,
 			}).from(
 				".content__profile > *",
 				{
@@ -78,7 +78,7 @@ export default {
 					stagger: 0.1,
 				},
 				"<"
-      );
+			);
 		});
 
 		return {
@@ -166,14 +166,35 @@ export default {
 	color: var(--color-title);
 }
 /* crew__rank */
-.subheading__rank {
+/* .subheading__rank {
 	font-family: var(--ff-H);
 	margin-bottom: 0.5em;
+	font-size: 32px;
+} */
+h2.subheading {
+	font-family: var(--ff-H);
+
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 18px;
+	letter-spacing: 0px;
+	margin-bottom: 0.5em;
+	/* text-align: center; */
 }
 /* crew__title */
-.heading__crew {
+/* .heading {
 	font-size: 1.65rem;
 	margin-bottom: 0.5em;
+} */
+/* CREW NAME */
+h3.heading {
+	/* font-family: Bellefair; */
+	font-size: 24px;
+	/* font-weight: 400; */
+	line-height: 28px;
+	letter-spacing: 0px;
+	margin-bottom: 0.5em;
+	/* text-align: center; */
 }
 
 /* crew__profile */
@@ -199,9 +220,9 @@ export default {
 	.subheading {
 		grid-row: 1;
 		grid-column: 1;
-		font-size: 19px;
+		/* font-size: 19px; */
 		margin: 3em 2em 1em;
-		text-align: left;
+		/* text-align: left; */
 	}
 	.section-contents__crew {
 		grid-row: 2;
@@ -215,17 +236,29 @@ export default {
 	}
 
 	/* crew__rank */
-	.subheading__rank {
-		font-size: 1.15rem;
+	h2.subheading {
+		font-size: 24px;
+		line-height: 28px;
+		/* font-size: 1.15rem;
 		text-align: center;
-		line-height: 0;
+		line-height: 0; */
 	}
 
 	/* crew__title */
-	.heading__crew {
+
+	h3.heading {
+		font-size: 40px;
+		line-height: 46px;
+
+		/* font-family: Bellefair; */
+		/* font-weight: 400; */
+		/* letter-spacing: 0px; */
+		/* text-align: center; */
+	}
+	/* .heading {
 		font-size: 2.2rem;
 		margin: 0em 0 0.3em;
-	}
+	} */
 
 	/* ============================================= */
 
@@ -317,6 +350,23 @@ export default {
 		font-size: 1.15rem;
 		text-align: left;
 		line-height: 1;
+	}
+	h2.subheading {
+		font-size: 32px;
+		line-height: 37px;
+
+		/* font-family: Bellefair; */
+		/* font-weight: 400; */
+		/* letter-spacing: 0px; */
+		/* text-align: left; */
+	}
+	h3.heading {
+		font-size: clamp(40px, 3vw, 56px);
+		/* font-family: Bellefair; */
+		/* font-weight: 400; */
+		/* line-height: 64px; */
+		/* letter-spacing: 0px; */
+		/* text-align: left; */
 	}
 	.btn__crew {
 		align-self: start;

@@ -36,7 +36,7 @@ export default {
 				ease: "power4",
 				stagger: 0.2,
 			}, "<")
-			.from(".details > *", {
+			.from(".content--js > *", {
 				y: 10,
 				autoAlpha: 0.01,
 				ease: "power4",

@@ -11,38 +11,44 @@
 		</button>
 
 		<!-- mobile navigation -->
-		<Transition name="mobileNavSlide">
-			<ul class="mobileNav" v-if="mobileNav">
-				<!-- close icon -->
-				<button type="btn" class="closeBtn" @click="toggleMobileNav">
-					<img src="@/assets/images/shared/icon-close.svg" alt="" />
-				</button>
+		<Transition 
+		@before-enter="onBeforeEnter"
+		@enter="onEnter"
+		@leave="onLeave"
+		:css="false"
+		>
 
-				<!-- nav lists -->
-				<li class="mobileNav__item">
-					<RouterLink to="/" class="mobileNav__link"  @click="toggleMobileNav">
-						<span class="mobileNav__link--number">00</span>
-						<span class="mobileNav__link--text">Home</span>
-					</RouterLink>
-				</li>
-				<li class="mobileNav__item">
-					<RouterLink :to="{ name: 'Destination' }" class="mobileNav__link"  @click="toggleMobileNav">
-						<span class="mobileNav__link--number">01</span>
-						<span class="mobileNav__link--text">Destination</span>
-					</RouterLink>
-				</li>
-				<li class="mobileNav__item">
-					<RouterLink :to="{ name: 'Crew' }" class="mobileNav__link"  @click="toggleMobileNav">
-						<span class="mobileNav__link--number">02</span>
-						<span class="mobileNav__link--text">Crew</span>
-					</RouterLink>
-				</li>
-				<li class="mobileNav__item">
-					<RouterLink :to="{ name: 'Technology' }" class="mobileNav__link"  @click="toggleMobileNav">
-						<span class="mobileNav__link--number">03</span>
-						<span class="mobileNav__link--text">Technology</span>
-					</RouterLink>
-				</li>
+		<ul class="mobileNav" v-if="mobileNav">
+			<!-- close icon -->
+			<button type="btn" class="closeBtn" @click="toggleMobileNav">
+				<img src="@/assets/images/shared/icon-close.svg" alt="" />
+			</button>
+	
+			<!-- nav lists -->
+			<li class="mobileNav__item">
+				<RouterLink to="/" class="mobileNav__link"  @click="toggleMobileNav">
+					<span class="mobileNav__link--number">00</span>
+					<span class="mobileNav__link--text">Home</span>
+				</RouterLink>
+			</li>
+			<li class="mobileNav__item">
+				<RouterLink :to="{ name: 'Destination' }" class="mobileNav__link"  @click="toggleMobileNav">
+					<span class="mobileNav__link--number">01</span>
+					<span class="mobileNav__link--text">Destination</span>
+				</RouterLink>
+			</li>
+			<li class="mobileNav__item">
+				<RouterLink :to="{ name: 'Crew' }" class="mobileNav__link"  @click="toggleMobileNav">
+					<span class="mobileNav__link--number">02</span>
+					<span class="mobileNav__link--text">Crew</span>
+				</RouterLink>
+			</li>
+			<li class="mobileNav__item">
+				<RouterLink :to="{ name: 'Technology' }" class="mobileNav__link"  @click="toggleMobileNav">
+					<span class="mobileNav__link--number">03</span>
+					<span class="mobileNav__link--text">Technology</span>
+				</RouterLink>
+			</li>
 			</ul>
 		</Transition>
 
@@ -81,6 +87,7 @@
 </template>
 
 <script>
+import { gsap } from 'gsap';
 export default {
 	name: "AppNavigation",
 	data() {
@@ -112,6 +119,45 @@ export default {
 			this.mobileNav = !this.mobileNav;
 		},
 	},
+	setup() {
+		const onBeforeEnter = (el) => { 
+			const items = [...el.children]
+			gsap.set(el, {
+				autoAlpha: 0.01,
+				x:100
+			})
+			gsap.set(items, {
+				autoAlpha: 0.01,
+				y:10
+			})
+		}
+		const onEnter = (el, done) => { 
+			const items = [...el.children]
+			const tl = gsap.timeline();
+			tl.to(el, {
+				autoAlpha: 1,
+				x: 0
+			})
+			.to(items, {
+				autoAlpha: 1,
+				y: 0,
+				stagger: 0.2,
+				onComplete: done
+			})
+		}
+		const onLeave = (el, done) => {
+			gsap.to(el, {
+				autoAlpha: 0.01,
+				x: 100,
+				onComplete: done
+			})
+		}
+		return {
+			onBeforeEnter,
+			onEnter,
+			onLeave,
+		}
+	}
 };
 </script>
 
@@ -120,7 +166,6 @@ export default {
 	position: absolute;
 	top: 0;
 	left: 0;
-	/* background-color: red; */
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
@@ -137,27 +182,19 @@ export default {
 	bottom: 0;
 	width: 100%;
 	max-width: 250px;
-
 	display: flex;
 	flex-direction: column;
-
 	background-color: var(--nav-background);
 	backdrop-filter: var(--nav-backdrop-filter);
-
 	z-index: 99;
 }
 .closeBtn {
 	align-self: flex-end;
 	margin: 2em 2em 5em;
 }
-.mobileNav__item:nth-child(1) {
-	margin-top: 4em;
-	background-color: red;
-}
 .mobileNav__item + .mobileNav__item {
-	margin-top: 0.8em;
+	margin-top: 1em;
 }
-
 .mobileNav__link {
 	display: flex;
 	gap: 0.8em;
@@ -165,13 +202,11 @@ export default {
 	font-family: var(--ff);
 	font-size: var(--fs);
 	line-height: var(--line-height);
-	color: var(--color);
+	color: var(--color-title);
 	text-transform: uppercase;
-	/* background-color: red; */
 }
 .mobileNav__link--number {
 	font-weight: var(--fw-number);
-	color: var(--color-title);
 }
 .mobileNav__link--text {
 	font-weight: var(--fw);
@@ -183,7 +218,6 @@ export default {
 /* ------------------------------ */
 
 nav a.router-link-exact-active {
-	color: var(--color-text);
 	border-right: 4px solid #fff;
 }
 
@@ -191,14 +225,6 @@ nav a.router-link-exact-active:hover {
 	background-color: transparent;
 }
 /* ------------------------------ */
-
-.mobileNavSlide-enter-from {
-	opacity: 0;
-	transform: translateX(100%);
-}
-.mobileNavSlide-enter-active {
-	transition: all 0.3s linear;
-}
 
 .line {
 		display: none;
@@ -211,7 +237,7 @@ nav a.router-link-exact-active:hover {
 /* !============================================================ */
 /* !-----======= Tablet =======------*/
 
-@media screen and (min-width: 700px) {
+@media (min-width: 700px) {
 	:root {
 		--fs-H: 80px;
 		--fs-nav: 14px;
@@ -221,7 +247,6 @@ nav a.router-link-exact-active:hover {
 		display: grid;
 		grid-template-columns: 120px 1fr;
 		grid-template-rows: 5em;
-		/* height: 5.5em; */
 	}
 	.branding {
 		grid-column: 1;
@@ -233,7 +258,10 @@ nav a.router-link-exact-active:hover {
 		grid-row: 1;
 		grid-column: 3/-1;
 		background-color: var(--nav-background);
-		backdrop-filter: var(--nav-backdrop-filter);
+		/* backdrop-filter: var(--nav-backdrop-filter);
+		backdrop-filter: blur(40.7742px); */
+		backdrop-filter: blur(10.7742px);
+		/* --nav-backdrop-filter: blur(40.7742px); */
 		height: 100%;
 		/* display: grid; */
 		/* grid-template-rows: 120px calc(82vh - 120px); */

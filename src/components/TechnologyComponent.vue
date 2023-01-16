@@ -1,13 +1,13 @@
 <template>
-	<div class="technology">
-		<h3 class="subheading subheading--js">
+	<main class="section">
+		<h1 class="subheading subheading--js">
 			<span class="subheading__number">03</span>
 			Space launch 101
-		</h3>
+		</h1>
 		<!-- ! IMAGES -->
 		<template v-for="tech in technology" :key="tech.name">
-			<div v-if="showTech === tech.name" class="section-img__tech">
-				<img 
+			<div v-if="showTech === tech.name" class="img__container">
+				<img
 					v-if="mobile"
 					:src="`${imageUrl}${tech.images.landscape}.jpg`"
 					alt=""
@@ -22,38 +22,33 @@
 			</div>
 		</template>
 
-		<div class="section-contents section-contents__technology">
-			<div class="contents-btn">
+		<section class="contents">
+			<section class="contents__btn">
 				<button
 					v-for="(tech, i) in technology"
 					:key="tech.name"
-					class="btn__circle btn--js"
+					class="contents__btn--circle btn--js"
 					:class="{ btn__active: tech.name == showTech }"
 					@click="showTech = tech.name"
 				>
 					{{ i + 1 }}
 				</button>
-			</div>
+			</section>
 			<!-- contents -->
-			<div class="contents contents__tech">
-				<div
-					v-for="tech in technology"
-					:key="tech.name"
-					class="content__0 details"
-				>
-					<template v-if="showTech === tech.name">
-						<h3 class="subheading subheading__tech">The terminology...</h3>
-						<h2 class="heading heading__tech">{{ tech.name }}</h2>
-						<p class="content-description description">
+			<section class="contents__info">
+				<template v-for="tech in technology" :key="tech.name">
+					<div class="content content--js" v-if="showTech === tech.name">
+						<h3 class="subheading">The terminology...</h3>
+						<h2 class="heading">{{ tech.name }}</h2>
+						<p class="description">
 							{{ tech.description }}
 						</p>
-					</template>
-				</div>
-			</div>
+					</div>
+				</template>
+			</section>
 			<!-- end of contents -->
-		</div>
-		<!-- end of section-contents -->
-	</div>
+		</section>
+	</main>
 </template>
 
 <script>
@@ -79,11 +74,11 @@ export default {
 		let windowWidth = ref(null);
 		function checkScreen() {
 			windowWidth.value = window.innerWidth;
-			if (windowWidth.value > 991) {
-				mobile.value = false;
-			} else {
+			if (windowWidth.value < 991) {
 				mobile.value = true;
+				return;
 			}
+			mobile.value = false;
 		}
 		checkScreen();
 		window.addEventListener("resize", checkScreen);
@@ -99,7 +94,7 @@ export default {
 				scale: 1.2,
 				ease: "power3.out",
 			}).from(
-				".details > *",
+				".content--js > *",
 				{
 					y: 50,
 					autoAlpha: 0.01,
@@ -121,16 +116,18 @@ export default {
 
 <style scoped>
 .section {
-}
-.technology {
+	padding-top: 6em;
+	min-height: 100vh;
+
 	background-image: url(@/assets/technology/background-technology-mobile.jpg);
 	background-size: cover;
 	background-repeat: no-repeat;
 
 	text-align: center;
-	min-height: 100vh;
-	padding-top: 6em;
 	overflow: hidden;
+}
+h1.subheading {
+	font-size: 1rem;
 }
 /* -------------------------------------------------------------------------- */
 /* -------------------------------------------------------------------------- */
@@ -141,8 +138,13 @@ export default {
 /* -------------------------------------------------------------------------- */
 /* -------------------------------------------------------------------------- */
 /* IMAGES */
-.section-img__tech {
+.img__container {
 	margin: 2.5em 0;
+}
+.img__container img {
+	width: 100%;
+	object-fit: cover;
+	object-position: center;
 }
 /* -------------------------------------------------------------------------- */
 /* -------------------------------------------------------------------------- */
@@ -153,7 +155,7 @@ export default {
 /* -------------------------------------------------------------------------- */
 /* -------------------------------------------------------------------------- */
 /* BUTTONS */
-.btn__circle {
+.contents__btn--circle {
 	width: 40px;
 	height: 40px;
 	margin: 0em 0.8em;
@@ -174,7 +176,7 @@ export default {
 /* -------------------------------------------------------------------------- */
 /* -------------------------------------------------------------------------- */
 /*! CONTENTS */
-.contents__tech {
+.contents__info {
 	margin: 2em 0 5em;
 }
 .subheading {
@@ -208,8 +210,8 @@ export default {
 /* -------------------------------------------------------------------------- */
 /* -------------------------------------------------------------------------- */
 /* -------------------------------------------------------------------------- */
-@media screen and (min-width: 500px) {
-	.heading__tech {
+@media (min-width: 500px) {
+	.heading {
 		font-size: 2rem;
 	}
 	/* !contents */
@@ -217,7 +219,7 @@ export default {
 		max-width: 400px;
 	}
 	/*! btn */
-	.btn__circle {
+	.contents__btn--circle {
 		width: 55px;
 		height: 55px;
 		margin: 0em 0.8em;
@@ -229,8 +231,12 @@ export default {
 		--fs-H: 80px;
 		--fs-nav: 14px;
 	}
-	.technology {
+	.section {
 		background-image: url(@/assets/technology/background-technology-tablet.jpg);
+		display: grid;
+		grid-template-rows: repeat(3, auto);
+		grid-template-columns: 1fr;
+		justify-content: center;
 	}
 
 	/* !============================================================ */
@@ -243,27 +249,38 @@ export default {
 	.section__tech {
 		margin-bottom: 3em;
 	}
-	.subheading__others {
+	h1.subheading {
+		font-size: 20px;
+		text-align: left;
+		margin: 3em 2em 1em;
 		grid-row: 1;
 		grid-column: 1;
-		font-size: 19px;
-		margin: 3em 2em 1em;
-		text-align: left;
+		font-size: 20px;	
+		line-height: 24px;
+		letter-spacing: 3.375px;
 	}
+	/* h1.subheading {
+		font-family: Barlow Condensed;
+		font-size: 20px;
+		font-weight: 400;
+		line-height: 24px;
+		letter-spacing: 3.375px;
+		text-align: left;
+	} */
 
-	.heading__tech {
+	.heading {
 		font-size: 2.2rem;
 		margin: 0.2em 0 0.5em;
 	}
 
-	.subheading__tech {
+	h3.subheading {
 		font-size: 1rem;
 	}
 
 	/* ============================================= */
 	/** CONTENTS */
 
-	.contents__tech {
+	.contents__info {
 		height: 14em;
 	}
 
@@ -280,10 +297,10 @@ export default {
 	/* !============================================================ */
 
 	/* !-----=======IMAGES=======------*/
-	.section-img__tech {
+	.img__container {
 		height: 25em;
 	}
-	.section-img__tech img {
+	.img__container img {
 		height: inherit;
 		width: 100%;
 	}
@@ -301,71 +318,83 @@ export default {
 		--line-height-H: 100px;
 		--fs-nav: 14px;
 	}
-	.technology {
+	.section {
 		background-image: url(@/assets/technology/background-technology-desktop.jpg);
-		padding-top: 8em;
+		/* padding-top: 8em; */
+		padding-top: 10em;
 		display: grid;
-		grid-template-rows: 3em 4em 20em 4em;
 		grid-template-rows: 3em 4em 280px 4em;
-		grid-template-columns: 100px 1fr 1fr 80px;
+		grid-template-columns: 100px 1.4fr 0.6fr 80px;
+		grid-column-gap: 2em;
 		text-align: left;
 		align-items: center;
 	}
-	.technology > .subheading {
+	h1.subheading {
 		grid-row: 1;
 		grid-column: 2;
 		margin: 0;
 		justify-self: start;
 		padding: 0;
+		font-size: 28px;
 	}
-	.section-img__tech {
+	.img__container {
 		grid-column: 3/-1;
 		grid-row: 2/-1;
 		margin: 0;
 		padding: 0;
-		/* background-color: red; */
 		height: 100%;
 	}
-	.section-img__tech img {
+	.img__container img {
 		height: 100%;
-		/* width: 100%; */
-		/* object-fit: cover; */
 	}
 
 	/* contains btn and content */
-	.section-contents {
+	.contents {
 		grid-row: 3;
 		grid-column: 2;
-		display: grid;
-		grid-template-columns: 3em auto;
-		grid-template-rows: auto;
-		gap: 1em;
-		border: 4px solid;
-		/* background-color: red; */
-		height: 100%;
+		/* gap: 1em; */
+		gap: 2em;
+		display: flex;
+		justify-content: flex-start;
+		align-items: flex-start;
+		height: auto;
+		padding: 0;
+		margin: 0;
 	}
-	.contents-btn {
+	.contents__btn {
 		grid-row: 1;
 		grid-column: 1;
 		display: flex;
 		flex-direction: column;
-		gap: 1em;
+		gap: 1.8em;
 		justify-content: space-between;
 		align-items: start;
 	}
-	.contents-btn button {
+	.contents__btn button {
 		margin: 0;
 	}
-	.btn__circle {
+	.contents__btn--circle {
 		width: 65px;
 		height: 65px;
 	}
-	.contents__tech {
-		/* height: 100%; */
+	.contents__info {
 		margin: 0;
+	}
+	.heading {
+		margin-bottom: 0;
+		font-size: clamp(40px, 4vw, 56px);
+		line-height: 64.18px;
 	}
 	.description {
 		margin: 0;
+		font-size: 18px;
+		max-width: 445px;
+		padding: 0;
+	}
+}
+@media (min-width: 1100px) {
+	.contents {
+		gap: 3em;
 	}
 }
 </style>

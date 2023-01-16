@@ -29,7 +29,7 @@ export default {
 			// 	duration: 1,
 			// 	ease: "power4"
 			// })
-			console.log("app mounted");
+			// console.log("app mounted");
 		});
 		onUpdated(() => {
 			// gsap.from(".app_header", {
@@ -38,7 +38,7 @@ export default {
 			// 	duration: 1,
 			// 	ease: "power4"
 			// })
-			console.log("app updated");
+			// console.log("app updated");
 		});
 	},
 };

@@ -1,26 +1,28 @@
 <template>
-	<div class="section section__destination">
+	<div class="section">
 		<h3 class="subheading subheading--js">
 			<span class="subheading__number">01</span>
 			Pick your destination
 		</h3>
 
-		<!-- destination images section-->
-		<div
-			class="section-img-container"
-			v-for="destination in destinations"
-			:key="destination.name"
-		>
-			<template v-if="showDestination === destination.name">
-				<transition name="fade_in" mode="out-in" appear>
+		<!--! destination images section-->
+		<template v-for="destination in destinations" :key="destination.name">
+			<div
+				class="img__container"
+				v-if="showDestination === destination.name"
+			>
+				<transition
+				appear
+				@enter="onEnter"
+				>
 					<img
 						:src="`${imageUrl}${destination.images.png}.png`"
 						:alt="`${destination.name}`"
-						class="section-img__destination"
+						class="img"
 					/>
 				</transition>
-			</template>
-		</div>
+			</div>
+		</template>
 		<!-- !NEXT SECTION -->
 		<div class="section-contents__destination">
 			<!--! buttons -->
@@ -90,6 +92,69 @@ export default {
 
 		onUpdated(() => {
 			console.log("dest comp updated");
+			// const tl = gsap.timeline({
+			// 	defaults: {
+			// 		duration: 1.4,
+			// 	},
+			// });
+
+			// tl.fromTo(
+			// 	".img",
+			// 	{
+			// 		y: 10,
+			// 		scale: 0.95,
+			// 		autoAlpha: 0.01,
+			// 	},
+			// 	{
+			// 		y: 0,
+			// 		scale: 1,
+			// 		autoAlpha: 1,
+			// 		ease: "sine",
+			// 		onRepeat: () => {
+			// 			gsap.fromTo(
+			// 				".img",
+			// 				{
+			// 					autoAlpha: 1,
+			// 				},
+			// 				{
+			// 					autoAlpha: 1,
+			// 				}
+			// 			);
+			// 		},
+			// 		onComplete: () => {
+			// 			gsap.fromTo(
+			// 				".img",
+			// 				{
+			// 					scale: 1,
+			// 				},
+			// 				{
+			// 					scale: 0.95,
+			// 					yoyo: true,
+			// 					yoyoEase: true,
+			// 					repeat: -1,
+			// 					duration: 2,
+			// 				}
+			// 			);
+			// 		},
+			// 	}
+			// ).fromTo(
+			// 	".dest__contents > *",
+			// 	{
+			// 		y: 70,
+			// 		autoAlpha: 0.01,
+			// 	},
+			// 	{
+			// 		y: 0,
+			// 		autoAlpha: 1,
+			// 		stagger: 0.1,
+			// 		ease: "power4",
+			// 	},
+			// 	"<"
+			// );
+		});
+
+		const onEnter = () => {
+			console.log("enter");
 			const tl = gsap.timeline({
 				defaults: {
 					duration: 1.4,
@@ -97,7 +162,7 @@ export default {
 			});
 
 			tl.fromTo(
-				".section-img__destination",
+				".img",
 				{
 					y: 10,
 					scale: 0.95,
@@ -110,7 +175,7 @@ export default {
 					ease: "sine",
 					onRepeat: () => {
 						gsap.fromTo(
-							".section-img__destination",
+							".img",
 							{
 								autoAlpha: 1,
 							},
@@ -121,7 +186,7 @@ export default {
 					},
 					onComplete: () => {
 						gsap.fromTo(
-							".section-img__destination",
+							".img",
 							{
 								scale: 1,
 							},
@@ -132,8 +197,8 @@ export default {
 								repeat: -1,
 								duration: 2,
 							}
-						)
-					}
+						);
+					},
 				}
 			).fromTo(
 				".dest__contents > *",
@@ -149,11 +214,12 @@ export default {
 				},
 				"<"
 			);
-		});
+		}
 		return {
 			destinations,
 			showDestination,
 			imageUrl,
+			onEnter
 		};
 	},
 };
@@ -164,13 +230,11 @@ export default {
 	text-align: center;
 	min-height: 100vh;
 	padding-top: 6em;
-	/* overflow: hidden; */
-}
-.section__destination {
+	overflow: hidden;
+
 	background-image: url(@/assets/destination/background-destination-mobile.jpg);
 	background-size: cover;
 	background-repeat: no-repeat;
-	/* min-height: 100vh; */
 }
 .section-contents__destination {
 	padding: 0 0.8em;
@@ -200,10 +264,10 @@ export default {
 	margin-top: 0.2em;
 	color: #fff;
 }
-.section-img-container {
+.img__container  {
 	margin: 2em 0;
 }
-.section-img__destination {
+.img {
 	width: 12em;
 	height: 12em;
 	display: inline-block;
@@ -246,7 +310,7 @@ export default {
 	margin-bottom: 2em;
 }
 @media screen and (min-width: 500px) {
-	.section-img__destination {
+	.img {
 		width: 16em;
 		height: 16em;
 	}
@@ -267,7 +331,7 @@ export default {
 		--fs-H: 80px;
 		--fs-nav: 14px;
 	}
-	.section__destination {
+	.section {
 		background-image: url(@/assets/destination/background-destination-tablet.jpg);
 	}
 	.subheading {
@@ -294,7 +358,7 @@ export default {
 		display: flex;
 		justify-content: space-evenly;
 	}
-	.section-img__destination {
+	.img {
 		width: 340px;
 		height: 340px;
 	}
@@ -310,7 +374,7 @@ export default {
 		--line-height-H: 100px;
 		--fs-nav: 14px;
 	}
-	.section__destination {
+	.section {
 		background-image: url(@/assets/destination/background-destination-desktop.jpg);
 		padding-top: 8em;
 		display: grid;
@@ -324,7 +388,7 @@ export default {
 		grid-column: 2;
 		margin: 0;
 	}
-	.section-img-container {
+	.img__container {
 		grid-column: 2;
 		grid-row: 2;
 		justify-self: center;
@@ -350,15 +414,15 @@ export default {
 	}
 }
 @media (min-width: 1100px) {
-	.section__destination {
+	.section {
 		grid-template-columns: 130px 1.2fr 0.8fr 100px;
 	}
 }
 @media (min-width: 1200px) {
-	.section__destination {
+	.section {
 		grid-template-columns: 150px 1.2fr 0.8fr 150px;
 	}
-	.section-img__destination {
+	.img {
 		width: 25em;
 		height: 25em;
 	}
