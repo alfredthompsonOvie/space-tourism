@@ -268,6 +268,9 @@ nav a.router-link-exact-active:hover {
 		/* grid-template-rows: auto;
 		grid-template-columns: 0.2fr 1fr  120px;
 		justify-content: end; */
+		display: flex;
+		align-items: center;
+		padding: 0;
 	}
 	.mainNav {
 		justify-self: end;
@@ -306,7 +309,7 @@ nav a.router-link-exact-active:hover {
 }
 @media screen and (min-width: 750px) {
 	.mainNav {
-		gap: 2.5em;
+		/* gap: 2.5em; */
 		padding: 0 3em;
 	}
 }

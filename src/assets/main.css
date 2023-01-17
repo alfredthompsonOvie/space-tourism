@@ -6,7 +6,7 @@
 	--ff-P: "Barlow", sans-serif;
 
 	--fs: 1rem;
-	--fs-tabs: 0.875rem; /* 14px*/
+	--fs-nav: 0.875rem; /* 14px*/
 	--fs-p: 1rem;
 	--fs-H: 3.5em; /* 56px*/
 	--fs-avg: 0.875rem; /* 14px*/
@@ -17,7 +17,7 @@
 	--fw-number: 700;
 
 	--letter-spacing: 2.7px;
-	--letter-spacing-tabs: 2.36px;
+	--letter-spacing-nav: 2.36px;
 	--letter-spacing-avg: 2.36px;
 	--letter-spacing-cta: 1.25px;
 

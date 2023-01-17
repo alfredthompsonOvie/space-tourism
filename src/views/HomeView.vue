@@ -1,28 +1,28 @@
 <template>
-	<div class="section">
-		<div class="section__contents">
+	<main class="section">
+		<section class="section__contents">
 			<!-- contents -->
-			<div class="contents">
-				<div class="content">
-					<h2 class="subheading">So, you want to travel to</h2>
-					<h3 class="heading">Space</h3>
+			<section class="contents">
+				<section class="content">
+					<h1 class="subheading">So, you want to travel to</h1>
+					<h2 class="heading">Space</h2>
 					<p class="description">
 						Let’s face it; if you want to go to space, you might as well
 						genuinely go to outer space and not hover kind of on the edge of it.
 						Well sit back, and relax because we’ll give you a truly out of this
 						world experience!
 					</p>
-				</div>
-			</div>
+				</section>
+			</section>
 
 			<!-- btn -->
-			<div class="btn__explore--wrapper btn--js">
+			<section class="btn__explore--wrapper btn--js">
 				<router-link :to="{ name: 'Destination' }" class="btn btn__explore"
 					>expore</router-link
 				>
-			</div>
-		</div>
-	</div>
+			</section>
+		</section>
+	</main>
 </template>
 
 <script>
@@ -85,7 +85,8 @@ export default {
 
 .subheading {
 	margin: 1em 0 0;
-	font-size: clamp(0.75rem, 3vw, 1rem);
+	/* font-size: clamp(0.75rem, 3vw, 1rem); */
+	font-size: 1rem;
 }
 .section__contents {
 	padding: 0 1em;
@@ -187,7 +188,9 @@ export default {
 	.subheading {
 		margin: 4em 0 0;
 		text-align: center;
-		/* font-size: 1.15rem; */
+		font-size: 20px;
+		line-height: 24px;
+		letter-spacing: 3.375px;
 	}
 	.heading {
 		/* font-size: 7.5rem; */
@@ -224,18 +227,28 @@ export default {
 		grid-column: 2/3;
 	}
 	.subheading {
-		margin: 0;
+		/* margin: 0; */
 		text-align: left;
-		font-size: clamp(1rem, 1.5vw, 1.6rem);
+		font-size: 1.75rem; /*28px*/
+		font-size: clamp(1.5rem, 1.5vw, 1.75rem);
+		line-height: 34px;
+		letter-spacing: 4.7px;
+
+		/* font-size: clamp(1rem, 1.5vw, 1.6rem); */
+		/* font-weight: 400; */
+		
+
+
 	}
-	h3.heading {
+	.heading {
 		margin: 0.05em 0;
+		font-size: clamp(8rem, 11vw, 9.375rem);
+		line-height: 1.3;
+
 		/* font-family: Bellefair; */
 		/* font-size: 150px; */
-		font-size: clamp(7rem, 11vw, 9.375rem);
 /* font-weight: 400; */
 		/* line-height: 172px; */
-		line-height: 1.3;
 /* letter-spacing: 0px; */
 /* text-align: left; */
 
