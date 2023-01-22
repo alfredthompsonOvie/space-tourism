@@ -7,15 +7,17 @@
 		<!-- ! IMAGES -->
 		<template v-for="tech in technology" :key="tech.name">
 			<section v-if="showTech === tech.name" class="img__container">
+				<!-- :src="`${imageUrl}${tech.images.landscape}.jpg`" -->
 				<img
 					v-if="mobile"
-					:src="`${imageUrl}${tech.images.landscape}.jpg`"
+					:src="`${getImageUrl(tech.images.landscape)}.jpg`"
 					alt=""
 					class="avatar"
 				/>
+				<!-- :src="`${imageUrl}${tech.images.portrait}.jpg`" -->
 				<img
 					v-else
-					:src="`${imageUrl}${tech.images.portrait}.jpg`"
+					:src="`${getImageUrl(tech.images.portrait)}.jpg`"
 					alt=""
 					class="avatar"
 				/>
@@ -64,9 +66,9 @@ export default {
 		const { technology } = userData;
 		const imageUrl = new URL("../assets/technology/", import.meta.url).href;
 
-		// function getImageUrl(name) {
-		// 	return new URL(`../assets/technology/${name}.png`, import.meta.url).href;
-		// }
+		function getImageUrl(name) {
+			return new URL(`../assets/technology/${name}`, import.meta.url).href;
+		}
 
 		// console.log(technology);
 
@@ -140,6 +142,7 @@ export default {
 			imageUrl,
 			showTech,
 			mobile,
+			getImageUrl,
 		}
 	}
 }

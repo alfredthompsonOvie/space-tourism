@@ -58,7 +58,7 @@ export default {
 	name: "CrewView",
 	setup() {
 		const { crew: crewMembers } = userData;
-		const imageUrl = new URL("../assets/crew/", import.meta.url).href;
+		// const imageUrl = new URL("../assets/crew/", import.meta.url).href;
 		function getImageUrl(name) {
 			return new URL(`/src/assets/crew/${name}`, import.meta.url).href;
 		}
@@ -119,7 +119,7 @@ export default {
 		return {
 			crewMembers,
 			showCrew,
-			imageUrl,
+			// imageUrl,
 			getImageUrl,
 		}
 	}

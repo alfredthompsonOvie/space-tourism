@@ -16,8 +16,9 @@
 				appear
 				@enter="onEnter"
 				>
+				<!-- :src="`${imageUrl}${destination.images.png}.png`" -->
 					<img
-						:src="`${imageUrl}${destination.images.png}.png`"
+						:src="`${getImageUrl(destination.images.png)}.png`"
 						:alt="`a picture of ${destination.name} in space`"
 						class="img"
 					/>
@@ -87,7 +88,9 @@ export default {
 		const showDestination = ref("Moon");
 
 		const imageUrl = new URL("../assets/destination/", import.meta.url).href;
-
+		function getImageUrl(name) {
+			return new URL(`/src/assets/destination/${name}`, import.meta.url).href;
+		}
 		onUpdated(() => {
 			console.log("dest comp updated");
 			// const tl = gsap.timeline({
@@ -267,7 +270,8 @@ export default {
 			destinations,
 			showDestination,
 			imageUrl,
-			onEnter
+			onEnter,
+			getImageUrl,
 		}
 	}
 }
