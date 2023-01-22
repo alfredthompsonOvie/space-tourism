@@ -8,7 +8,6 @@
 		<!--! iMAGES -->
 		<template v-for="crew in crewMembers" :key="crew.name">
 			<section v-if="showCrew === crew.name" class="img__container">
-				<!-- :src="`${imageUrl}${crew.images.png}.png`" -->
 				<img
 					:src="`${getImageUrl(crew.images.png)}`"
 					:alt="`an image of ${ crew.name }`"
@@ -58,7 +57,7 @@ export default {
 	name: "CrewView",
 	setup() {
 		const { crew: crewMembers } = userData;
-		// const imageUrl = new URL("../assets/crew/", import.meta.url).href;
+
 		function getImageUrl(name) {
 			return new URL(`/src/assets/crew/${name}`, import.meta.url).href;
 		}
@@ -119,7 +118,6 @@ export default {
 		return {
 			crewMembers,
 			showCrew,
-			// imageUrl,
 			getImageUrl,
 		}
 	}
@@ -138,13 +136,6 @@ export default {
 	overflow: hidden;
 }
 
-/** benchMark */
-/* ====================================================================== */
-/* ====================================================================== */
-/* ====================================================================== */
-/* ====================================================================== */
-/* ====================================================================== */
-/* ====================================================================== */
 .img__container {
 	display: flex;
 	justify-content: center;
@@ -157,12 +148,7 @@ export default {
 	object-fit: contain;
 	object-position: bottom;
 }
-/* ====================================================================== */
-/* ====================================================================== */
-/* ====================================================================== */
-/* ====================================================================== */
-/* ====================================================================== */
-/* ====================================================================== */
+
 .btn__container {
 	margin: 1.5em 0 1.8em;
 }
@@ -180,11 +166,6 @@ export default {
 .is-active {
 	background-color: #fff;
 }
-/* ====================================================================== */
-/* ====================================================================== */
-/* ====================================================================== */
-/* ====================================================================== */
-/* ====================================================================== */
 
 .content__profile__container {
 	height: 15em;
@@ -221,21 +202,13 @@ h2.subheading {
 	text-align: center;
 }
 
-/* CREW NAME */
 h2.heading {
 	font-size: 24px;
 	line-height: 28px;
 	letter-spacing: 0px;
 	margin-bottom: 0.5em;
 }
-/* h3.heading {
-	font-size: 24px;
-	line-height: 28px;
-	letter-spacing: 0px;
-	margin-bottom: 0.5em;
-} */
 
-/* crew__profile */
 .content__profile {
 	width: 100%;
 	margin: 0 auto;
@@ -269,30 +242,16 @@ h2.heading {
 		align-items: center;
 	}
 
-	/* crew__rank */
-	/* h2.subheading {
-		font-size: 24px;
-		line-height: 28px;
-		margin: 2em 0em .5em;
-	} */
 	.content__profile h1.subheading {
 		font-size: 24px;
 		line-height: 28px;
 		margin: 2em 0em .5em;
 }
 
-	/* crew__title */
-	/* h3.heading {
-		font-size: 40px;
-		line-height: 46px;
-	} */
-	/* crew__title */
 	h2.heading {
 		font-size: 40px;
 		line-height: 46px;
 	}
-
-	/* ============================================= */
 
 	.content__profile__container {
 		width: 100%;
@@ -370,9 +329,6 @@ h2.heading {
 		line-height: 1;
 		font-size: clamp(28px, 3vw, 32px);
 	}
-	/* h3.heading {
-		font-size: clamp(37px, 3vw, 56px);
-	} */
 	h2.heading {
 		font-size: clamp(37px, 3vw, 56px);
 	}
@@ -393,9 +349,6 @@ h2.heading {
 	.section {
 		grid-template-columns: 150px 1fr 1fr 150px;
 	}
-	/* h3.heading {
-		font-size: clamp(30px, 3.4vw, 56px);
-	} */
 	h2.heading {
 		font-size: clamp(30px, 3.4vw, 56px);
 	}

@@ -1,12 +1,10 @@
 <template>
 	<main class="section">
-		<!-- h3 -->
 		<h1 class="subheading subheading--js">
 			<span class="subheading__number">01</span>
 			Pick your destination
 		</h1>
 
-		<!--! destination images section-->
 		<template v-for="destination in destinations" :key="destination.name">
 			<section
 				class="img__container"
@@ -16,7 +14,6 @@
 				appear
 				@enter="onEnter"
 				>
-				<!-- :src="`${imageUrl}${destination.images.png}.png`" -->
 					<img
 						:src="`${getImageUrl(destination.images.png)}`"
 						:alt="`a picture of ${destination.name} in space`"
@@ -25,9 +22,8 @@
 				</transition>
 			</section>
 		</template>
-		<!-- !NEXT SECTION -->
+
 		<section class="section-contents__destination">
-			<!--! buttons -->
 			<section class="btnDestination">
 				<button
 					class="btn__planet"
@@ -40,7 +36,6 @@
 					{{ destination.name }}
 				</button>
 			</section>
-			<!-- contents -->
 			<section class="contents contents__destination">
 				<section v-for="destination in destinations" :key="destination.name">
 					<template v-if="showDestination === destination.name">
@@ -92,7 +87,6 @@ export default {
 			return new URL(`/src/assets/destination/${name}`, import.meta.url).href;
 		}
 		onUpdated(() => {
-			console.log("dest comp updated");
 			// const tl = gsap.timeline({
 			// 	defaults: {
 			// 		duration: 1.4,
@@ -155,7 +149,6 @@ export default {
 		});
 
 		const onEnter = () => {
-			console.log("enter");
 			const tl = gsap.timeline({
 				defaults: {
 					duration: 1.4,
