@@ -1,13 +1,14 @@
 <template>
-	<div class="section">
-		<h3 class="subheading subheading--js">
+	<main class="section">
+		<!-- h3 -->
+		<h1 class="subheading subheading--js">
 			<span class="subheading__number">01</span>
 			Pick your destination
-		</h3>
+		</h1>
 
 		<!--! destination images section-->
 		<template v-for="destination in destinations" :key="destination.name">
-			<div
+			<section
 				class="img__container"
 				v-if="showDestination === destination.name"
 			>
@@ -17,18 +18,19 @@
 				>
 					<img
 						:src="`${imageUrl}${destination.images.png}.png`"
-						:alt="`${destination.name}`"
+						:alt="`a picture of ${destination.name} in space`"
 						class="img"
 					/>
 				</transition>
-			</div>
+			</section>
 		</template>
 		<!-- !NEXT SECTION -->
-		<div class="section-contents__destination">
+		<section class="section-contents__destination">
 			<!--! buttons -->
-			<div class="btnDestination">
+			<section class="btnDestination">
 				<button
 					class="btn__planet"
+					type="button"
 					:class="showDestination === destination.name ? 'btn__active' : ''"
 					v-for="destination in destinations"
 					:key="destination.name"
@@ -36,45 +38,40 @@
 				>
 					{{ destination.name }}
 				</button>
-			</div>
+			</section>
 			<!-- contents -->
-			<div class="contents contents__destination">
-				<div v-for="destination in destinations" :key="destination.name">
+			<section class="contents contents__destination">
+				<section v-for="destination in destinations" :key="destination.name">
 					<template v-if="showDestination === destination.name">
-						<div class="dest__contents">
-							<h3 class="heading heading__destination">
+						<section class="dest__contents">
+							<h1 class="heading heading__destination">
 								{{ destination.name }}
-							</h3>
+							</h1>
 							<p class="content-description content-description__destination">
 								{{ destination.description }}
 							</p>
-							<div class="content-duration">
-								<div class="content-duration__avgDistance">
-									<h4 class="subheading subheading__duration">avg. distance</h4>
-									<h1 class="heading heading__duration">
+							<section class="content-duration">
+								<section class="content-duration__avgDistance">
+									<h1 class="subheading subheading__duration">avg. distance</h1>
+									<h2 class="heading heading__duration">
 										{{ destination.distance }}
-									</h1>
-								</div>
-								<div class="content-duration__est-travel-time">
-									<h4 class="subheading subheading__duration">
+									</h2>
+								</section>
+								<section class="content-duration__est-travel-time">
+									<h1 class="subheading subheading__duration">
 										est. travel time
-									</h4>
-									<h1 class="heading heading__duration">
-										{{ destination.travel }}
 									</h1>
-								</div>
-							</div>
-						</div>
-						<!-- <Transition name="slide_in" mode="out-in" appear>
-
-						</Transition> -->
+									<h2 class="heading heading__duration">
+										{{ destination.travel }}
+									</h2>
+								</section>
+							</section>
+						</section>
 					</template>
-				</div>
-			</div>
-			<!-- end of contents -->
-		</div>
-		<!-- end of section-contents -->
-	</div>
+				</section>
+			</section>
+		</section>
+	</main>
 </template>
 
 <script>

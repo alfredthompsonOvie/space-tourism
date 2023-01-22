@@ -11,7 +11,7 @@
 				<!-- :src="`${imageUrl}${crew.images.png}.png`" -->
 				<img
 					:src="`${getImageUrl(crew.images.png)}.png`"
-					alt=""
+					:alt="`an image of ${ crew.name }`"
 					class="avatar"
 					:class="{ 'avatar--width': crew.name == 'Mark Shuttleworth' }"
 				/>
@@ -26,15 +26,18 @@
 					:key="crew.name"
 					class="btn--dot"
 					:class="{ 'is-active': crew.name == showCrew }"
-					@click="showCrew = crew.name"
+					@click.prevent="showCrew = crew.name"
+					type="button"
+					aria-label="button"
+					role="button"
 				></button>
 			</section>
 			<!--! CONTENTS -->
 			<template v-for="crew in crewMembers" :key="crew.name">
 				<section class="content__profile__container" v-if="showCrew === crew.name">
 					<section class="content__profile">
-						<h2 class="subheading">{{ crew.role }}</h2>
-						<h3 class="heading" :class="{'heading--mark': crew.name==='Mark Shuttleworth'}">{{ crew.name }}</h3>
+						<h1 class="subheading">{{ crew.role }}</h1>
+						<h2 class="heading" :class="{'heading--mark': crew.name==='Mark Shuttleworth'}">{{ crew.name }}</h2>
 						<p class="description">
 							{{ crew.bio }}
 						</p>
@@ -207,14 +210,30 @@ h2.subheading {
 	letter-spacing: 0px;
 	margin-bottom: 0.5em;
 }
+.content__profile h1.subheading {
+	font-family: var(--ff-H);
+
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 18px;
+	letter-spacing: 0px;
+	margin-bottom: 0.5em;
+	text-align: center;
+}
 
 /* CREW NAME */
-h3.heading {
+h2.heading {
 	font-size: 24px;
 	line-height: 28px;
 	letter-spacing: 0px;
 	margin-bottom: 0.5em;
 }
+/* h3.heading {
+	font-size: 24px;
+	line-height: 28px;
+	letter-spacing: 0px;
+	margin-bottom: 0.5em;
+} */
 
 /* crew__profile */
 .content__profile {
@@ -251,14 +270,24 @@ h3.heading {
 	}
 
 	/* crew__rank */
-	h2.subheading {
+	/* h2.subheading {
 		font-size: 24px;
 		line-height: 28px;
 		margin: 2em 0em .5em;
-	}
+	} */
+	.content__profile h1.subheading {
+		font-size: 24px;
+		line-height: 28px;
+		margin: 2em 0em .5em;
+}
 
 	/* crew__title */
-	h3.heading {
+	/* h3.heading {
+		font-size: 40px;
+		line-height: 46px;
+	} */
+	/* crew__title */
+	h2.heading {
 		font-size: 40px;
 		line-height: 46px;
 	}
@@ -310,6 +339,10 @@ h3.heading {
 		margin: 0;
 		align-self: end;
 	}
+	h1.subheading {
+		text-align: left;
+		display: inline-block;
+	}
 	.img__container {
 		grid-column: 3;
 		grid-row: 2/-1;
@@ -337,7 +370,10 @@ h3.heading {
 		line-height: 1;
 		font-size: clamp(28px, 3vw, 32px);
 	}
-	h3.heading {
+	/* h3.heading {
+		font-size: clamp(37px, 3vw, 56px);
+	} */
+	h2.heading {
 		font-size: clamp(37px, 3vw, 56px);
 	}
 .description {
@@ -357,7 +393,10 @@ h3.heading {
 	.section {
 		grid-template-columns: 150px 1fr 1fr 150px;
 	}
-	h3.heading {
+	/* h3.heading {
+		font-size: clamp(30px, 3.4vw, 56px);
+	} */
+	h2.heading {
 		font-size: clamp(30px, 3.4vw, 56px);
 	}
 

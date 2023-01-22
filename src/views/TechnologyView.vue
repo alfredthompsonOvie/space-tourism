@@ -6,7 +6,7 @@
 		</h1>
 		<!-- ! IMAGES -->
 		<template v-for="tech in technology" :key="tech.name">
-			<div v-if="showTech === tech.name" class="img__container">
+			<section v-if="showTech === tech.name" class="img__container">
 				<img
 					v-if="mobile"
 					:src="`${imageUrl}${tech.images.landscape}.jpg`"
@@ -19,7 +19,7 @@
 					alt=""
 					class="avatar"
 				/>
-			</div>
+			</section>
 		</template>
 
 		<section class="contents">
@@ -30,6 +30,7 @@
 					class="contents__btn--circle btn--js"
 					:class="{ btn__active: tech.name == showTech }"
 					@click="showTech = tech.name"
+					type="button"
 				>
 					{{ i + 1 }}
 				</button>
@@ -38,7 +39,7 @@
 			<section class="contents__info">
 				<template v-for="tech in technology" :key="tech.name">
 					<div class="content content--js" v-if="showTech === tech.name">
-						<h3 class="subheading">The terminology...</h3>
+						<h1 class="subheading">The terminology...</h1>
 						<h2 class="heading">{{ tech.name }}</h2>
 						<p class="description">
 							{{ tech.description }}
@@ -158,6 +159,10 @@ export default {
 }
 h1.subheading {
 	font-size: 1rem;
+}
+.content h1.subheading {
+	letter-spacing: 2.3625px;
+	text-align: center;
 }
 /* -------------------------------------------------------------------------- */
 /* -------------------------------------------------------------------------- */
@@ -289,6 +294,9 @@ h1.subheading {
 		line-height: 24px;
 		letter-spacing: 3.375px;
 	}
+	.content h1.subheading {
+		font-size: 1rem;
+	}
 	/* h1.subheading {
 		font-family: Barlow Condensed;
 		font-size: 20px;
@@ -410,6 +418,9 @@ h1.subheading {
 	.contents__info {
 		margin: 0;
 	}
+	.content h1.subheading {
+	text-align: left;
+}
 	.heading {
 		margin-bottom: 0;
 		font-size: clamp(40px, 4vw, 56px);

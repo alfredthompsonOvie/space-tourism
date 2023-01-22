@@ -2,12 +2,12 @@
 	<nav class="navigation nav">
 		<!-- site logo -->
 		<div class="branding">
-			<img src="@/assets/images/shared/logo.svg" alt="" />
+			<img src="@/assets/images/shared/logo.svg" alt="space tourism logo" />
 		</div>
 
 		<!-- open menu icon -->
-		<button type="btn" @click="toggleMobileNav" v-if="mobile">
-			<img src="@/assets/images/shared/icon-hamburger.svg" alt="" />
+		<button type="button" @click.prevent="toggleMobileNav" v-if="mobile">
+			<img src="@/assets/images/shared/icon-hamburger.svg" alt="click to open menu" />
 		</button>
 
 		<!-- mobile navigation -->
@@ -20,31 +20,31 @@
 
 		<ul class="mobileNav" v-if="mobileNav">
 			<!-- close icon -->
-			<button type="btn" class="closeBtn" @click="toggleMobileNav">
-				<img src="@/assets/images/shared/icon-close.svg" alt="" />
+			<button type="button" class="closeBtn" @click.prevent="toggleMobileNav">
+				<img src="@/assets/images/shared/icon-close.svg" alt="click to close menu" />
 			</button>
 	
 			<!-- nav lists -->
 			<li class="mobileNav__item">
-				<RouterLink to="/" class="mobileNav__link"  @click="toggleMobileNav">
+				<RouterLink to="/" class="mobileNav__link"  @click.prevent="toggleMobileNav">
 					<span class="mobileNav__link--number">00</span>
 					<span class="mobileNav__link--text">Home</span>
 				</RouterLink>
 			</li>
 			<li class="mobileNav__item">
-				<RouterLink :to="{ name: 'Destination' }" class="mobileNav__link"  @click="toggleMobileNav">
+				<RouterLink :to="{ name: 'Destination' }" class="mobileNav__link"  @click.prevent="toggleMobileNav">
 					<span class="mobileNav__link--number">01</span>
 					<span class="mobileNav__link--text">Destination</span>
 				</RouterLink>
 			</li>
 			<li class="mobileNav__item">
-				<RouterLink :to="{ name: 'Crew' }" class="mobileNav__link"  @click="toggleMobileNav">
+				<RouterLink :to="{ name: 'Crew' }" class="mobileNav__link"  @click.prevent="toggleMobileNav">
 					<span class="mobileNav__link--number">02</span>
 					<span class="mobileNav__link--text">Crew</span>
 				</RouterLink>
 			</li>
 			<li class="mobileNav__item">
-				<RouterLink :to="{ name: 'Technology' }" class="mobileNav__link"  @click="toggleMobileNav">
+				<RouterLink :to="{ name: 'Technology' }" class="mobileNav__link"  @click.prevent="toggleMobileNav">
 					<span class="mobileNav__link--number">03</span>
 					<span class="mobileNav__link--text">Technology</span>
 				</RouterLink>
@@ -381,7 +381,7 @@ nav a.router-link-exact-active:hover {
 		/* justify-content: end; */
 		/* background-color: red; */
 		/* background-color: green; */
-		gap: 1.5em;
+		gap: 1em;
 
 		display: flex;
 
@@ -420,7 +420,7 @@ nav a.router-link-exact-active:hover {
 		grid-template-columns: 0.2fr 1fr  100px;
 	}
 	.mainNav {
-		gap: 2em;
+		gap: 1.5em;
 	}
 }
 @media (min-width: 1200px) {
@@ -428,7 +428,7 @@ nav a.router-link-exact-active:hover {
 		grid-template-columns: 150px  4fr 0.2fr 5.2fr 150px;
 	}
 	.mainNav {
-		gap: 3em;
+		gap: 2em;
 	}
 	.overlay {
 		grid-template-columns: 0.2fr 1fr  150px;

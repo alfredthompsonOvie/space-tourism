@@ -1,7 +1,6 @@
 <template>
 	<main class="section">
 		<section class="section__contents">
-			<!-- contents -->
 			<section class="contents">
 				<section class="content">
 					<h1 class="subheading">So, you want to travel to</h1>
@@ -15,7 +14,6 @@
 				</section>
 			</section>
 
-			<!-- btn -->
 			<section class="btn__explore--wrapper btn--js">
 				<router-link :to="{ name: 'Destination' }" class="btn btn__explore"
 					>expore</router-link
