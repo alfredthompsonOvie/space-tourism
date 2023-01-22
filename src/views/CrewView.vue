@@ -10,7 +10,7 @@
 			<section v-if="showCrew === crew.name" class="img__container">
 				<!-- :src="`${imageUrl}${crew.images.png}.png`" -->
 				<img
-					:src="`${getImageUrl(crew.images.png)}.png`"
+					:src="`${getImageUrl(crew.images.png)}`"
 					:alt="`an image of ${ crew.name }`"
 					class="avatar"
 					:class="{ 'avatar--width': crew.name == 'Mark Shuttleworth' }"

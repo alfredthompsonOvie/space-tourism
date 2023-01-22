@@ -10,14 +10,14 @@
 				<!-- :src="`${imageUrl}${tech.images.landscape}.jpg`" -->
 				<img
 					v-if="mobile"
-					:src="`${getImageUrl(tech.images.landscape)}.jpg`"
+					:src="`${getImageUrl(tech.images.landscape)}`"
 					alt=""
 					class="avatar"
 				/>
 				<!-- :src="`${imageUrl}${tech.images.portrait}.jpg`" -->
 				<img
 					v-else
-					:src="`${getImageUrl(tech.images.portrait)}.jpg`"
+					:src="`${getImageUrl(tech.images.portrait)}`"
 					alt=""
 					class="avatar"
 				/>
