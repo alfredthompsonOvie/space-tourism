@@ -27,6 +27,7 @@ const router = createRouter({
       name: 'Technology',
       component: () => import('../views/TechnologyView.vue')
     },
+    { path: '/:pathMatch(.*)*', redirect: '/'},
   ]
 })
 

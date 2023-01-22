@@ -1,11 +1,8 @@
 <template>
 	<nav class="navigation nav">
-		<!-- site logo -->
 		<div class="branding">
 			<img src="@/assets/images/shared/logo.svg" alt="space tourism logo" />
 		</div>
-
-		<!-- open menu icon -->
 		<button type="button" @click.prevent="toggleMobileNav" v-if="mobile">
 			<img src="@/assets/images/shared/icon-hamburger.svg" alt="click to open menu" />
 		</button>
@@ -19,12 +16,10 @@
 		>
 
 		<ul class="mobileNav" v-if="mobileNav">
-			<!-- close icon -->
 			<button type="button" class="closeBtn" @click.prevent="toggleMobileNav">
 				<img src="@/assets/images/shared/icon-close.svg" alt="click to close menu" />
 			</button>
-	
-			<!-- nav lists -->
+
 			<li class="mobileNav__item">
 				<RouterLink to="/" class="mobileNav__link"  @click.prevent="toggleMobileNav">
 					<span class="mobileNav__link--number">00</span>
@@ -103,7 +98,6 @@ export default {
 	},
 	mounted() {
 		this.mobileNav = false;
-		console.log("nav mounted");
 	},
 	methods: {
 		checkscreenSize() {
@@ -214,9 +208,6 @@ export default {
 .nav a {
 	letter-spacing: 2.7px;
 }
-
-/* ------------------------------ */
-
 nav a.router-link-exact-active {
 	border-right: 4px solid #fff;
 }
@@ -224,18 +215,10 @@ nav a.router-link-exact-active {
 nav a.router-link-exact-active:hover {
 	background-color: transparent;
 }
-/* ------------------------------ */
 
 .line {
 		display: none;
 	}
-/* !============================================================ */
-/* !============================================================ */
-/* ============================================= */
-/* ============================================= */
-/* !============================================================ */
-/* !============================================================ */
-/* !-----======= Tablet =======------*/
 
 @media (min-width: 700px) {
 	:root {
@@ -253,21 +236,12 @@ nav a.router-link-exact-active:hover {
 		justify-self: center;
 	}
 	.overlay {
-		/* display: block; */
 		width: 100%;
 		grid-row: 1;
 		grid-column: 3/-1;
 		background-color: var(--nav-background);
-		/* backdrop-filter: var(--nav-backdrop-filter);
-		backdrop-filter: blur(40.7742px); */
 		backdrop-filter: blur(10.7742px);
-		/* --nav-backdrop-filter: blur(40.7742px); */
 		height: 100%;
-		/* display: grid; */
-		/* grid-template-rows: 120px calc(82vh - 120px); */
-		/* grid-template-rows: auto;
-		grid-template-columns: 0.2fr 1fr  120px;
-		justify-content: end; */
 		display: flex;
 		align-items: center;
 		padding: 0;
@@ -277,16 +251,10 @@ nav a.router-link-exact-active:hover {
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		/* gap: 2.8em; */
 		gap: 1em;
 		padding: 0 3em;
 		height: 100%;
-		/* 
-		background-color: var(--nav-background);
-		backdrop-filter: var(--nav-backdrop-filter); */
 	}
-
-	/* ------------------------------ */
 
 	nav a {
 		color: inherit;
@@ -309,7 +277,6 @@ nav a.router-link-exact-active:hover {
 }
 @media screen and (min-width: 750px) {
 	.mainNav {
-		/* gap: 2.5em; */
 		padding: 0 3em;
 	}
 }
@@ -329,7 +296,6 @@ nav a.router-link-exact-active:hover {
 		position: absolute;
 		left: 0;
 		top: 1.5em;
-		/* height: 100%; */
 		padding: 0;
 	}
 	.branding {
@@ -338,10 +304,6 @@ nav a.router-link-exact-active:hover {
 		width: 3em;
 		height: 3em;
 	}
-	/* .branding img {
-		width: inherit;
-		height: inherit;
-	} */
 	.line {
 		display: block;
 		grid-row: 1;
@@ -352,8 +314,6 @@ nav a.router-link-exact-active:hover {
 		z-index: 99;
 	}
 	.overlay {
-		/* display: block; */
-		/* width: 100%; */
 		grid-row: 1;
 		grid-column: 3/-1;
 		background-color: var(--nav-background);
@@ -367,30 +327,18 @@ nav a.router-link-exact-active:hover {
 		overflow: hidden;
 		position: relative;
 	}
-	/* .mainNav */
 	.mainNav {
-		/* width: 60%; */
 		grid-row: 1;
 		grid-column: 2;
-		/* background-color: transparent;
-		backdrop-filter: none; */
 		padding: 0;
-
 		justify-self: end;
-
-		/* justify-content: end; */
-		/* background-color: red; */
-		/* background-color: green; */
 		gap: 1em;
-
 		display: flex;
-
 	}
 	.mainNav li {
 		height: 100%;
 	}
 	.mainNav a {
-		/*  */
 		display: flex;
 		gap: .5em;
 		align-items: center;
@@ -402,15 +350,6 @@ nav a.router-link-exact-active:hover {
 	.mobileNav__link--number{
 		display: inline-block;
 	}
-
-	/* !============================================================ */
-	/* !============================================================ */
-	/* ============================================= */
-	/* ============================================= */
-	/* !============================================================ */
-	/* !============================================================ */
-
-	
 }
 @media (min-width: 1100px) {
 	.nav {
