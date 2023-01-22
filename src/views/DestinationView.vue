@@ -18,7 +18,7 @@
 				>
 				<!-- :src="`${imageUrl}${destination.images.png}.png`" -->
 					<img
-						:src="`${getImageUrl(destination.images.png)}.png`"
+						:src="`${getImageUrl(destination.images.png)}`"
 						:alt="`a picture of ${destination.name} in space`"
 						class="img"
 					/>
@@ -217,7 +217,6 @@ export default {
 			);
 		}
 		onMounted(() => {
-			console.log("dest mounted");
 		// 	const tl = gsap.timeline({
 		// 		defaults: {
 		// 			duration: 1.6,
