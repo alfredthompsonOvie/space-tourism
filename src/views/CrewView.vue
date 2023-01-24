@@ -8,12 +8,12 @@
 		<!--! iMAGES -->
 		<template v-for="crew in crewMembers" :key="crew.name">
 			<section v-if="showCrew === crew.name" class="img__container">
-				<img
-					:src="`${getImageUrl(crew.images.webp)}`"
-					:alt="`an image of ${ crew.name }`"
-					class="avatar"
-					:class="{ 'avatar--width': crew.name == 'Mark Shuttleworth' }"
-				/>
+			<img
+				:src="`${getImageUrl(crew.images.webp)}`"
+				:alt="`an image of ${ crew.name }`"
+				class="avatar"
+				:class="{ 'avatar--width': crew.name == 'Mark Shuttleworth' }"
+			/>
 			</section>
 		</template>
 
@@ -72,6 +72,8 @@ export default {
 			});
 			tl.from(".avatar", {
 				autoAlpha: 0.01,
+				scale: .95,
+				y: 10,
 				duration: 2,
 			}).from(
 				".content__profile > *",

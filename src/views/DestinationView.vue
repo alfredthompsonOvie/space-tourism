@@ -13,6 +13,7 @@
 				<transition
 				appear
 				@enter="onEnter"
+				:css="false"
 				>
 					<img
 						:src="`${getImageUrl(destination.images.webp)}`"
@@ -71,7 +72,7 @@
 </template>
 
 <script>
-import { ref, onUpdated, onMounted } from "vue";
+import { ref } from "vue";
 import userData from "../data/data.json";
 import { gsap } from "gsap";
 
@@ -86,67 +87,6 @@ export default {
 		function getImageUrl(name) {
 			return new URL(`/src/assets/destination/${name}`, import.meta.url).href;
 		}
-		onUpdated(() => {
-			// const tl = gsap.timeline({
-			// 	defaults: {
-			// 		duration: 1.4,
-			// 	},
-			// });
-
-			// tl.fromTo(
-			// 	".img",
-			// 	{
-			// 		y: 10,
-			// 		scale: 0.95,
-			// 		autoAlpha: 0.01,
-			// 	},
-			// 	{
-			// 		y: 0,
-			// 		scale: 1,
-			// 		autoAlpha: 1,
-			// 		ease: "sine",
-			// 		onRepeat: () => {
-			// 			gsap.fromTo(
-			// 				".img",
-			// 				{
-			// 					autoAlpha: 1,
-			// 				},
-			// 				{
-			// 					autoAlpha: 1,
-			// 				}
-			// 			);
-			// 		},
-			// 		onComplete: () => {
-			// 			gsap.fromTo(
-			// 				".img",
-			// 				{
-			// 					scale: 1,
-			// 				},
-			// 				{
-			// 					scale: 0.95,
-			// 					yoyo: true,
-			// 					yoyoEase: true,
-			// 					repeat: -1,
-			// 					duration: 2,
-			// 				}
-			// 			);
-			// 		},
-			// 	}
-			// ).fromTo(
-			// 	".dest__contents > *",
-			// 	{
-			// 		y: 70,
-			// 		autoAlpha: 0.01,
-			// 	},
-			// 	{
-			// 		y: 0,
-			// 		autoAlpha: 1,
-			// 		stagger: 0.1,
-			// 		ease: "power4",
-			// 	},
-			// 	"<"
-			// );
-		});
 
 		const onEnter = () => {
 			const tl = gsap.timeline({
@@ -209,54 +149,6 @@ export default {
 				"<"
 			);
 		}
-		onMounted(() => {
-		// 	const tl = gsap.timeline({
-		// 		defaults: {
-		// 			duration: 1.6,
-		// 			ease: "power4",
-		// 		}
-		// 	});
-		// 	tl.from(".subheading--js", {
-		// 		x: -30,
-		// 		autoAlpha: 0.01,
-		// 		onComplete: () => gsap.to(".subheading--js", { clearProps: "all" }),
-		// 	})
-		// 		.from(".img", {
-		// 		scale: .95,
-		// 		autoAlpha: 0.01,
-		// 			ease: "power2",
-		// 		onComplete: () => gsap.fromTo(".img", {
-		// 		scale: 1,
-				
-		// 		}, {
-		// 		scale: .95,
-		// 		yoyo: true,
-		// 		yoyoEase: true,
-		// 		repeat: -1,
-		// 		duration: 2,
-		// 		}),
-		// 		onRepeat: () => {
-		// 				gsap.fromTo(".img", {
-		// 					autoAlpha: 1
-		// 				}, {
-		// 					autoAlpha: 1,
-		// 				})
-		// 			},
-		// 	}, "-=1")
-		// 	.from(".btn__planet", {
-		// 		x: 10,
-		// 		autoAlpha: 0.01,
-		// 		stagger: 0.2,
-		// 		onComplete: () => gsap.to(".btn__planet", { clearProps: "all" }),
-		// 	}, "<")
-		// 	.from(".dest__contents > *", {
-		// 		y: 10,
-		// 		autoAlpha: 0.01,
-		// 		stagger: 0.2,
-		// 		onComplete: () => gsap.to(".dest__contents > *", { clearProps: "all" }),
-		// 	}, "-=1.5")
-
-		})
 
 		return {
 			destinations,
@@ -275,7 +167,6 @@ export default {
 	min-height: 100vh;
 	padding-top: 6em;
 	overflow: hidden;
-
 	background-image: url(@/assets/destination/background-destination-mobile.jpg);
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -315,16 +206,7 @@ export default {
 	width: 12em;
 	height: 12em;
 	display: inline-block;
-	/* animation: bounce 2s linear  -1 forwards; */
 }
-/* @keyframes bounce {
-	from {
-		transform: scale(.95);
-	}
-	to {
-		transform: scale(1);
-	}
-} */
 
 .btnDestination {
 	display: flex;
@@ -341,9 +223,7 @@ export default {
 }
 .contents__destination {
 	max-width: 315px;
-	/* height: 28em; */
 	padding: 0;
-	/* margin: 0 auto; */
 }
 .content-duration {
 	border-top: 1px solid var(--border-line);
@@ -362,7 +242,6 @@ export default {
 		font-size: 17px;
 		max-width: 355px;
 	}
-	/* ! btn */
 	.btn__planet {
 		font-size: 16px;
 	}
@@ -392,7 +271,6 @@ export default {
 	.contents__destination {
 		font-size: 17px;
 		max-width: 535px;
-		/* height: 20em; */
 	}
 	.content-description__destination {
 		font-size: 16px;
@@ -444,11 +322,6 @@ export default {
 		width: 353px;
 		padding: 0;
 	}
-
-	.contents-btn-control {
-		margin: 0;
-	}
-	/* destination */
 	.btnDestination,
 	.content-duration {
 		justify-content: flex-start;
