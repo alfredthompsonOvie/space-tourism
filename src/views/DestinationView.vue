@@ -15,7 +15,7 @@
 				@enter="onEnter"
 				>
 					<img
-						:src="`${getImageUrl(destination.images.png)}`"
+						:src="`${getImageUrl(destination.images.webp)}`"
 						:alt="`a picture of ${destination.name} in space`"
 						class="img"
 					/>

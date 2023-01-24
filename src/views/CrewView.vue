@@ -9,7 +9,7 @@
 		<template v-for="crew in crewMembers" :key="crew.name">
 			<section v-if="showCrew === crew.name" class="img__container">
 				<img
-					:src="`${getImageUrl(crew.images.png)}`"
+					:src="`${getImageUrl(crew.images.webp)}`"
 					:alt="`an image of ${ crew.name }`"
 					class="avatar"
 					:class="{ 'avatar--width': crew.name == 'Mark Shuttleworth' }"
