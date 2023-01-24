@@ -75,19 +75,16 @@ export default {
 	font-weight: var(--fw);
 	text-transform: uppercase;
 	color: var(--color-title);
-	
-	margin: 0.15em 0;
-	font-size: clamp(2rem, 22vw, 7.5rem);
+	margin: 0.25em 0;
 	font-size: clamp(4.5rem, 22vw, 7.5rem);
 }
-
 .subheading {
 	margin: 1em 0 0;
-	/* font-size: clamp(0.75rem, 3vw, 1rem); */
 	font-size: 1rem;
 }
 .section__contents {
 	padding: 0 1em;
+	padding-bottom: 5em;
 }
 .contents {
 	padding: 0em;
@@ -96,18 +93,15 @@ export default {
 .description {
 	font-size: var(--fs);
 	max-width: 320px;
-	margin: 0 auto;
+	margin: 1.5em auto 0;
 }
 .btn__explore--wrapper {
 	width: 8.5em;
 	height: 8.5em;
+	margin: 7em auto 0;
 }
 .btn__explore {
-	position: absolute;
-	bottom: 2.5em;
-	left: 50%;
-	transform: translateX(-50%);
-
+	position: relative;
 	width: inherit;
 	height: inherit;
 	border-radius: 50%;
@@ -118,7 +112,6 @@ export default {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-
 	font-weight: var(--fw);
 	font-size: var(--fs-cta);
 	font-family: var(--ff-H);
@@ -126,8 +119,6 @@ export default {
 	transition: all 0.3s linear;
 }
 .btn__explore:hover {
-	/* width: 8.5em;
-	height: 8.5em; */
 	letter-spacing: 4px;
 }
 .btn__explore::before,
@@ -165,13 +156,9 @@ export default {
 		margin: 0 auto;
 		font-size: 16px;
 	}
-	/* ! btn */
 	.btn__explore--wrapper {
 		width: 9.5em;
 		height: 9.5em;
-	}
-	.btn__explore {
-		bottom: 1em;
 	}
 }
 @media screen and (min-width: 700px) {
@@ -191,7 +178,6 @@ export default {
 		letter-spacing: 3.375px;
 	}
 	.heading {
-		/* font-size: 7.5rem; */
 		margin: 0.1em 0;
 	}
 	.contents {
@@ -206,18 +192,14 @@ export default {
 		--line-height-H: 100px;
 		--fs-nav: 14px;
 	}
-
-	/* !-----=======SECTION=======------*/
 	.section {
 		display: grid;
 		grid-template-rows: auto;
 		grid-template-columns: 100px 1fr 80px;
 		align-items: end;
-
 		text-align: left;
-		padding: 0;
-
 		background-image: url(@/assets/images/home/background-home-desktop.jpg);
+		padding: 0;
 		padding-bottom: 5em;
 	}
 	.section__contents {
@@ -225,31 +207,16 @@ export default {
 		grid-column: 2/3;
 	}
 	.subheading {
-		/* margin: 0; */
 		text-align: left;
 		font-size: 1.75rem; /*28px*/
 		font-size: clamp(1.5rem, 1.5vw, 1.75rem);
 		line-height: 34px;
 		letter-spacing: 4.7px;
-
-		/* font-size: clamp(1rem, 1.5vw, 1.6rem); */
-		/* font-weight: 400; */
-		
-
-
 	}
 	.heading {
 		margin: 0.05em 0;
 		font-size: clamp(8rem, 11vw, 9.375rem);
 		line-height: 1.3;
-
-		/* font-family: Bellefair; */
-		/* font-size: 150px; */
-/* font-weight: 400; */
-		/* line-height: 172px; */
-/* letter-spacing: 0px; */
-/* text-align: left; */
-
 	}
 	.section__contents {
 		padding: 0;
@@ -271,6 +238,7 @@ export default {
 		width: 12em;
 		height: 12em;
 		align-self: flex-end;
+		margin: 0;
 	}
 	.btn__explore {
 		position: absolute;
