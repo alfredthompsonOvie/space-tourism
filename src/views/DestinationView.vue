@@ -24,7 +24,7 @@
 			</section>
 		</template>
 
-		<section class="section-contents__destination">
+		<section class="section__contents__destination">
 			<section class="btnDestination">
 				<button
 					class="btn__planet"
@@ -44,17 +44,17 @@
 							<h1 class="heading heading__destination">
 								{{ destination.name }}
 							</h1>
-							<p class="content-description content-description__destination">
+							<p class="content__description content__description--destination">
 								{{ destination.description }}
 							</p>
-							<section class="content-duration">
-								<section class="content-duration__avgDistance">
+							<section class="content__duration">
+								<section class="content__duration--avgDistance">
 									<h1 class="subheading subheading__duration">avg. distance</h1>
 									<h2 class="heading heading__duration">
 										{{ destination.distance }}
 									</h2>
 								</section>
-								<section class="content-duration__est-travel-time">
+								<section class="content__duration--est-travel-time">
 									<h1 class="subheading subheading__duration">
 										est. travel time
 									</h1>
@@ -171,7 +171,7 @@ export default {
 	background-size: cover;
 	background-repeat: no-repeat;
 }
-.section-contents__destination {
+.section__contents__destination {
 	padding: 0 0.8em;
 }
 .heading {
@@ -225,12 +225,12 @@ export default {
 	max-width: 315px;
 	padding: 0;
 }
-.content-duration {
+.content__duration {
 	border-top: 1px solid var(--border-line);
 	margin-top: 2em;
 	padding: 2em 0;
 }
-.content-duration__avgDistance {
+.content__duration--avgDistance {
 	margin-bottom: 2em;
 }
 @media screen and (min-width: 500px) {
@@ -272,11 +272,11 @@ export default {
 		font-size: 17px;
 		max-width: 535px;
 	}
-	.content-description__destination {
+	.content__description--destination {
 		font-size: 16px;
 		max-width: 520px;
 	}
-	.content-duration {
+	.content__duration {
 		display: flex;
 		justify-content: space-evenly;
 	}
@@ -315,7 +315,7 @@ export default {
 		grid-row: 2;
 		justify-self: center;
 	}
-	.section-contents__destination {
+	.section__contents__destination {
 		grid-row: 2;
 		grid-column: 3;
 		justify-self: end;
@@ -323,10 +323,10 @@ export default {
 		padding: 0;
 	}
 	.btnDestination,
-	.content-duration {
+	.content__duration {
 		justify-content: flex-start;
 	}
-	.content-duration__est-travel-time {
+	.content__duration--est-travel-time {
 		margin-left: 4em;
 	}
 }

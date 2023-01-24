@@ -132,7 +132,6 @@ export default {
 	background-size: cover;
 	background-repeat: no-repeat;
 	min-height: 100vh;
-
 	text-align: center;
 	padding-top: 6em;
 	overflow: hidden;
@@ -186,7 +185,6 @@ export default {
 }
 h2.subheading {
 	font-family: var(--ff-H);
-
 	font-size: 1rem;
 	font-weight: 400;
 	line-height: 18px;
@@ -195,7 +193,6 @@ h2.subheading {
 }
 .content__profile h1.subheading {
 	font-family: var(--ff-H);
-
 	font-size: 1rem;
 	font-weight: 400;
 	line-height: 18px;
@@ -223,7 +220,6 @@ h2.heading {
 	}
 	.section {
 		background-image: url(@/assets/crew/background-crew-tablet.jpg);
-
 		display: grid;
 		grid-template-rows: repeat(3, auto);
 		grid-template-columns: 1fr;
@@ -237,7 +233,6 @@ h2.heading {
 	.contents {
 		grid-row: 2;
 		grid-column: 1;
-
 		display: flex;
 		flex-direction: column-reverse;
 		justify-content: flex-start;

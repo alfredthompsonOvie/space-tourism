@@ -9,7 +9,6 @@
 
 		<!-- mobile navigation -->
 		<Transition 
-		@before-enter="onBeforeEnter"
 		@enter="onEnter"
 		@leave="onLeave"
 		:css="false"
@@ -114,25 +113,18 @@ export default {
 		},
 	},
 	setup() {
-		const onBeforeEnter = (el) => { 
-			const items = [...el.children]
-			gsap.set(el, {
-				autoAlpha: 0.01,
-				x:100
-			})
-			gsap.set(items, {
-				autoAlpha: 0.01,
-				y:10
-			})
-		}
 		const onEnter = (el, done) => { 
 			const items = [...el.children]
 			const tl = gsap.timeline();
-			tl.to(el, {
+			tl.fromTo(el, {
+				autoAlpha: 0.01,
+			}, {
 				autoAlpha: 1,
-				x: 0
 			})
-			.to(items, {
+			.fromTo(items, {
+				autoAlpha: 0.01,
+				y:10
+			}, {
 				autoAlpha: 1,
 				y: 0,
 				stagger: 0.2,
@@ -142,12 +134,11 @@ export default {
 		const onLeave = (el, done) => {
 			gsap.to(el, {
 				autoAlpha: 0.01,
-				x: 100,
+				duration: 0.1,
 				onComplete: done
 			})
 		}
 		return {
-			onBeforeEnter,
 			onEnter,
 			onLeave,
 		}

@@ -145,11 +145,9 @@ export default {
 .section {
 	padding-top: 6em;
 	min-height: 100vh;
-
 	background-image: url(@/assets/technology/background-technology-mobile.jpg);
 	background-size: cover;
 	background-repeat: no-repeat;
-
 	text-align: center;
 	overflow: hidden;
 }
@@ -198,7 +196,6 @@ h1.subheading {
 	color: var(--color-title);
 	letter-spacing: 2.3625px;
 	margin-bottom: 0.7em;
-	/* line-height: 17px; */
 }
 .description {
 	max-width: 325px;
@@ -220,7 +217,7 @@ h1.subheading {
 		font-size: 1.2rem;
 	}
 }
-@media screen and (min-width: 700px) {
+@media (min-width: 700px) {
 	:root {
 		--fs-H: 80px;
 		--fs-nav: 14px;
